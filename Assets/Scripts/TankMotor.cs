@@ -7,6 +7,7 @@ public class TankMotor : MonoBehaviour
     //components
     private CharacterController characterController;
     public Transform tf;
+    public GameObject shell;
     public Rigidbody shellRb;
     private Transform firingZone;
 
@@ -47,7 +48,9 @@ public class TankMotor : MonoBehaviour
     public void Shoot(float shotForce)
     {
         Vector3 shotDir = firingZone.forward * shotForce;
-        Rigidbody shellInstance = Instantiate(shellRb, firingZone.position, firingZone.rotation) as Rigidbody;
-        shellInstance.AddForce(shotDir);
+        GameObject shellInstance = Instantiate(shell, firingZone.position, firingZone.rotation);
+        shellRb = shellInstance.GetComponent<Rigidbody>();
+        shellRb.AddForce(shotDir);
+        Destroy(shellInstance, 3.0f);
     }
 }
