@@ -242,6 +242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1983962282}
+  - {fileID: 715567093}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -453,7 +454,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715567092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -468,8 +469,8 @@ Transform:
   - {fileID: 901944918}
   - {fileID: 46288098}
   - {fileID: 1785456359}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 147198577}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901944917
 GameObject:
@@ -1472,7 +1473,7 @@ PrefabInstance:
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.132
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
@@ -1502,7 +1503,7 @@ PrefabInstance:
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
@@ -1519,6 +1520,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2007625824981281330, guid: fc5461301a278e44a905b68d942aa704,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281331, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: shellPrefab
@@ -1534,14 +1540,18 @@ PrefabInstance:
         type: 3}
       propertyPath: shellRb
       value: 
-      objectReference: {fileID: -5265383973431000272, guid: bb356295464a90f4cab937359108a457,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281331, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: shell
       value: 
-      objectReference: {fileID: 2375207552461451128, guid: bb356295464a90f4cab937359108a457,
+      objectReference: {fileID: 1022581269164165950, guid: bb356295464a90f4cab937359108a457,
         type: 3}
+    - target: {fileID: 2007625824981281331, guid: fc5461301a278e44a905b68d942aa704,
+        type: 3}
+      propertyPath: timerDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281341, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_Name
