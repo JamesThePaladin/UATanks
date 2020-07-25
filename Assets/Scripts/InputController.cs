@@ -21,6 +21,7 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //switch statement for control schemes
         switch (input) 
         {
             case InputScheme.WASD:

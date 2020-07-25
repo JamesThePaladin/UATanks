@@ -47,10 +47,15 @@ public class TankMotor : MonoBehaviour
 
     public void Shoot(float shotForce)
     {
+        //vector for shot direction set equal to firingZone's foward axis * shotForce
         Vector3 shotDir = firingZone.forward * shotForce;
+        //instantiate a tank shell at the firing zone's position and rotation
         GameObject shellInstance = Instantiate(shell, firingZone.position, firingZone.rotation);
+        //get the rigidbody of the newly instantiated tank shell
         shellRb = shellInstance.GetComponent<Rigidbody>();
+        //add shot direction to it has a force
         shellRb.AddForce(shotDir);
+        //destroy it after 3 seconds
         Destroy(shellInstance, 3.0f);
     }
 }
