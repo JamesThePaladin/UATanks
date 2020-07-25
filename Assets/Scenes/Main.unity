@@ -1552,6 +1552,11 @@ PrefabInstance:
       propertyPath: timerDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2007625824981281331, guid: fc5461301a278e44a905b68d942aa704,
+        type: 3}
+      propertyPath: shotTimerDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281341, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_Name

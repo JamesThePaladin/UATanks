@@ -12,7 +12,7 @@ public class TankMotor : MonoBehaviour
     private Transform firingZone;
 
     //data
-    public float timerDelay;
+    public float shotTimerDelay;
     private float coolDownTimer;
 
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class TankMotor : MonoBehaviour
         firingZone = gameObject.GetComponentInChildren<Transform>().Find("FiringZone");
 
         //set cooldown time
-        coolDownTimer = timerDelay;
+        coolDownTimer = shotTimerDelay;
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class TankMotor : MonoBehaviour
             //destroy the instance after 3 seconds.
             Destroy(shellInstance, 3.0f);
             //reset cooldown
-            coolDownTimer = timerDelay;
+            coolDownTimer = shotTimerDelay;
         }
     }
 }
