@@ -41,7 +41,7 @@ public class InputController : MonoBehaviour
                 {
                     motor.Turn(pawn.turnSpeed);
                 }
-                if (Input.GetKeyDown(KeyCode.Space)) 
+                if (Input.GetKey(KeyCode.Space)) 
                 {
                     motor.Shoot(pawn.shotForce);
                 }
@@ -63,7 +63,7 @@ public class InputController : MonoBehaviour
                 {
                     motor.Turn(pawn.turnSpeed);
                 }
-                if (Input.GetKeyDown(KeyCode.RightAlt))
+                if (Input.GetKey(KeyCode.RightAlt))
                 {
                     motor.Shoot(pawn.shotForce);
                 }
