@@ -7,8 +7,7 @@ public class TankMotor : MonoBehaviour
     //components
     private CharacterController characterController;
     public Transform tf;
-    
-
+   
     // Start is called before the first frame update
     void Start()
     {

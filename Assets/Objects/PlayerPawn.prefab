@@ -79,14 +79,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6be440d8b1b89489f8dc61ab911436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shell: {fileID: 1022581269164165950, guid: bb356295464a90f4cab937359108a457, type: 3}
-  shellRb: {fileID: 1912227079948551252, guid: bb356295464a90f4cab937359108a457, type: 3}
+  shell: {fileID: 5845955624572756043, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
+  shellRb: {fileID: 1595236628235646013, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
   shotTimerDelay: 2
+  shellTimeOut: 3
   health: 100
   moveSpeed: 3
   turnSpeed: 180
   shotForce: 1000
   damage: 25
+  points: 0
 --- !u!114 &1714168480
 MonoBehaviour:
   m_ObjectHideFlags: 0
