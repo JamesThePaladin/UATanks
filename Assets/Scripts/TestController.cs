@@ -22,7 +22,7 @@ public class TestController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            motor.Shoot(pawn.shotForce);
+            pawn.Shoot(pawn.shotForce);
         }
     }
 }

@@ -43,7 +43,7 @@ public class InputController : MonoBehaviour
                 }
                 if (Input.GetKey(KeyCode.Space)) 
                 {
-                    motor.Shoot(pawn.shotForce);
+                    pawn.Shoot(pawn.shotForce);
                 }
                 break;
             case InputScheme.arrowKeys:
@@ -65,7 +65,7 @@ public class InputController : MonoBehaviour
                 }
                 if (Input.GetKey(KeyCode.RightAlt))
                 {
-                    motor.Shoot(pawn.shotForce);
+                    pawn.Shoot(pawn.shotForce);
                 }
                 break;
         }

@@ -7,13 +7,7 @@ public class TankMotor : MonoBehaviour
     //components
     private CharacterController characterController;
     public Transform tf;
-    public GameObject shell;
-    public Rigidbody shellRb;
-    private Transform firingZone;
-
-    //data
-    public float shotTimerDelay;
-    private float coolDownTimer;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +15,7 @@ public class TankMotor : MonoBehaviour
         //get components
         characterController = gameObject.GetComponent<CharacterController>();
         tf = gameObject.GetComponent<Transform>();
-        firingZone = gameObject.GetComponentInChildren<Transform>().Find("FiringZone");
-
-        //set cooldown time
-        coolDownTimer = shotTimerDelay;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        coolDownTimer -= Time.deltaTime;
+        
     }
 
     //function for tank movement
@@ -52,22 +37,5 @@ public class TankMotor : MonoBehaviour
         tf.Rotate(rotateVector, Space.Self);
     }
 
-    public void Shoot(float shotForce)
-    {
-        if (coolDownTimer <= 0)
-        {
-            //create a vector 3 for shot direction tat is equal to our firing zone's forward vector multiplied by shotForce
-            Vector3 shotDir = firingZone.forward * shotForce;
-            //instantiate a shell at the firing zone's position and rotation, save it in shellInstance.
-            GameObject shellInstance = Instantiate(shell, firingZone.position, firingZone.rotation);
-            //get the shellInstance's rigidbody
-            shellRb = shellInstance.GetComponent<Rigidbody>();
-            //add force to it equal to shot direction 
-            shellRb.AddForce(shotDir);
-            //destroy the instance after 3 seconds.
-            Destroy(shellInstance, 3.0f);
-            //reset cooldown
-            coolDownTimer = shotTimerDelay;
-        }
-    }
+    
 }
