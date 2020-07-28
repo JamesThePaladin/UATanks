@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class InputController : Controller
 {
     //input schemes
     public enum InputScheme {WASD, arrowKeys};
     public InputScheme input = InputScheme.WASD;
-
-    //components
-    public TankMotor motor;
-    public Pawn pawn;
 
     // Start is called before the first frame update
     void Start()

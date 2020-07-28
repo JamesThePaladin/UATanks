@@ -36,5 +36,11 @@ public class TankMotor : MonoBehaviour
         tf.Rotate(rotateVector, Space.Self);
     }
 
-    
+    //RotateTowards (Target, Speed) - rotate towards the target (if possible).
+    //If we rotate, then returns true. If we can't rotate returns false.
+    public bool RotateTowards(Vector3 target, float speed) 
+    {
+        //TODO: Finish this function
+        return false;
+    }
 }
