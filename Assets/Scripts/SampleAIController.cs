@@ -37,7 +37,7 @@ public class SampleAIController : Controller
         //if close to waypoint
         if (Vector3.SqrMagnitude (waypoints[currentWaypoint].position - tf.position) < closeEnough) 
         {
-            //and if the patrol index hasn't been completed
+            //and if the waypoint index hasn't been completed
             if (currentWaypoint < waypoints.Count - 1)
             {
                 //move to the next patrol waypoint

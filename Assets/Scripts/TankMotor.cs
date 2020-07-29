@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Threading;
 using UnityEngine;
 
 public class TankMotor : MonoBehaviour
@@ -7,13 +9,15 @@ public class TankMotor : MonoBehaviour
     //components
     private CharacterController characterController;
     public Transform tf;
+    public Pawn pawn;
    
     // Start is called before the first frame update
     void Start()
     {
         //get components
-        characterController = gameObject.GetComponent<CharacterController>();
-        tf = gameObject.GetComponent<Transform>();
+        characterController = GetComponent<CharacterController>();
+        tf = GetComponent<Transform>();
+        pawn = GetComponent<Pawn>();
         
     }
 
@@ -40,7 +44,18 @@ public class TankMotor : MonoBehaviour
     //If we rotate, then returns true. If we can't rotate returns false.
     public bool RotateTowards(Vector3 target, float speed) 
     {
-        //TODO: Finish this function
-        return false;
+        //find the vector to our target by finding the difference between the target position and our position
+        Vector3 vectorToTarget = target - tf.position;
+        //find the quaternion that looks down that vector
+        Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget);
+        if (targetRotation == tf.rotation)
+        {
+            return false;
+        }
+        else 
+        {
+            tf.rotation = Quaternion.RotateTowards(tf.rotation, targetRotation, pawn.turnSpeed * Time.deltaTime);
+            return true;
+        }
     }
 }
