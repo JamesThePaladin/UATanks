@@ -1070,6 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 416001044433266894}
+  pawn: {fileID: 0}
 --- !u!114 &1307388088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,6 +1091,7 @@ MonoBehaviour:
   - {fileID: 1489532202}
   - {fileID: 722400033}
   closeEnough: 1
+  loopType: 2
 --- !u!114 &1307388089 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1307388087, guid: 34386c19efdc58b4697d48237ebad47b,
@@ -1701,6 +1703,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 147198577}
     m_Modifications:
+    - target: {fileID: 1307388087, guid: 34386c19efdc58b4697d48237ebad47b, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 500287133672374348, guid: 34386c19efdc58b4697d48237ebad47b,
         type: 3}
       propertyPath: m_Layer
@@ -1845,6 +1851,11 @@ PrefabInstance:
         type: 3}
       propertyPath: points
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007625824981281328, guid: fc5461301a278e44a905b68d942aa704,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
