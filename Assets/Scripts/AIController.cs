@@ -39,41 +39,56 @@ public class AIController : Controller
         switch (aiState)
         {
             case AIState.Chase:
+                //if avoidance stage is not zero (or if we are avoiding)
                 if (avoidanceStage != 0)
                 {
+                    //do avoid manuevers
                     Avoidance();
                 }
                 else
                 {
+                    //otherwise chase player
                     Chase();
                 }
                 //check for transitions
+                //if our health is lower than half our max health
                 if (pawn.health < pawn.maxHealth * 0.5f)
                 {
+                    //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
+                //else if our player is within our sense radius
                 else if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
                 {
+                    //chase and fire at them
                     ChangeState(AIState.ChaseAndFire);
                 }
                 break;
             case AIState.ChaseAndFire:
+                //if avoidance stage is not zero (or if we are avoiding)
                 if (avoidanceStage != 0)
                 {
+                    //do avoid manuevers
                     Avoidance();
                 }
                 else
                 {
+                    //otherwise chase the player
                     Chase();
+                    //and shoot at them
                     pawn.Shoot(pawn.shotForce);
                 }
                 //check for transitions
+                //if our health is lower than half our max health
                 if (pawn.health < pawn.maxHealth * 0.5f)
                 {
+                    //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
+                //else if our player is within our sense radius
                 else if (Vector3.Distance(target.position, tf.position) > aiSenseRadius)
                 {
+                    //chase them
                     ChangeState(AIState.Chase);
                 }
                 break;
