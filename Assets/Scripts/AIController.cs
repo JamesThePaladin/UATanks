@@ -286,7 +286,7 @@ public class AIController : Controller
     {
         //rotates toward target
         motor.RotateTowards(target.position, pawn.turnSpeed);
-        // Check if we can move "data.moveSpeed" units away.
+        // Check if we can move "pawn.moveSpeed" units away.
         //    We chose this distance, because that is how far we move in 1 second,
         //    This means, we are looking for collisions "one second in the future."
         if (CanMove(pawn.moveSpeed))
@@ -303,7 +303,7 @@ public class AIController : Controller
 
     public void CheckForFlee()
     {
-        //TODO: write CheckForFlee state
+        //Do Nothing
     }
 
     public void Flee()
@@ -322,6 +322,7 @@ public class AIController : Controller
         motor.RotateTowards(fleePosition, pawn.turnSpeed);
         motor.Move(pawn.moveSpeed);
     }
+
     public void Patrol()
     {
         if (motor.RotateTowards(waypoints[currentWaypoint].position, pawn.turnSpeed))
