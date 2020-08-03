@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2007625824981281331}
   - component: {fileID: 2007625824981281328}
   - component: {fileID: 1714168480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerPawn
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 2007625824981281329}
+  pawn: {fileID: 0}
 --- !u!114 &2007625824981281328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,11 +85,12 @@ MonoBehaviour:
   shotTimerDelay: 2
   shellTimeOut: 3
   health: 100
-  moveSpeed: 3
+  moveSpeed: 10
   turnSpeed: 180
   shotForce: 1000
   damage: 25
-  points: 0
+  points: 150
+  score: 0
 --- !u!114 &1714168480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,9 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71bf0f0e96c3a5419da7a597e483f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
   motor: {fileID: 2007625824981281331}
   pawn: {fileID: 2007625824981281328}
+  input: 0
 --- !u!1 &2970509334632370829
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8497686970681056862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FiringZone
   m_TagString: PlayerFiringZone
   m_Icon: {fileID: 0}
@@ -146,10 +148,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 181818077799470962, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 636883874405053261, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
       propertyPath: m_Name
       value: Canon
+      objectReference: {fileID: 0}
+    - target: {fileID: 636883874405053261, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 672221882971161554, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
@@ -211,25 +223,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_body
       objectReference: {fileID: 0}
+    - target: {fileID: 1153093373755847779, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1397629665669033979, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
       propertyPath: m_Name
       value: Wheel_f_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397629665669033979, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3396724856166880957, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
       propertyPath: m_Name
       value: Wheel_b_left
       objectReference: {fileID: 0}
+    - target: {fileID: 3396724856166880957, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5461544126743618544, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
       propertyPath: m_Name
       value: Wheel_f_right
       objectReference: {fileID: 0}
+    - target: {fileID: 5461544126743618544, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7561097175505383651, guid: a30540c41d7d5ed4281d72b4916afb5e,
         type: 3}
       propertyPath: m_Name
       value: Wheel_b_right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561097175505383651, guid: a30540c41d7d5ed4281d72b4916afb5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30540c41d7d5ed4281d72b4916afb5e, type: 3}

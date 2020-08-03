@@ -14,16 +14,22 @@ public class Pawn : MonoBehaviour
     [Header("Shot Timers")]
     public float shotTimerDelay; //timer delay on fire rate cooldown
     public float shellTimeOut; //time before shelld estroys itself aautomatically
-    private float coolDownTimer; //cool down timer for firing
+    public float coolDownTimer; //cool down timer for firing
 
     [Header("Tank Stats")]
     public float health = 100; //health for pawns
+    public float maxHealth = 100; //max health a pawn can have
     public float moveSpeed = 3; //in meters per second
     public float turnSpeed = 180; //in degrees per second
     public float shotForce = 200; //in force applied to rb.
     public float damage = 25; //float for damage done by pawn shell's
     public int points; //how many points this pawn is worth when destroyed
     public int score; //the personal score of this pawn
+
+    [Header("AI Settings")]
+    public float closeEnough; //close enough distance to waypoint
+    public float viewRadius; //for radius of player detection
+    public float fieldOfView; //for Ai field of view
 
     protected virtual void Start()
     {
