@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class AIController : Controller
@@ -48,7 +49,7 @@ public class AIController : Controller
                 else
                 {
                     //otherwise chase player
-                    Chase();
+                    Chase(GameManager.instance.player, Vector3.zero);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -74,7 +75,7 @@ public class AIController : Controller
                 else
                 {
                     //otherwise chase the player
-                    Chase();
+                    Chase(GameManager.instance.player, Vector3.zero);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
                 }
@@ -282,10 +283,10 @@ public class AIController : Controller
         stateEnterTime = Time.time;
     }
 
-    public void Chase()
+    public void Chase(GameObject target, Vector3 offset)
     {
         //rotates toward target
-        motor.RotateTowards(target.position, pawn.turnSpeed);
+        motor.RotateTowards(target.transform.position + offset, pawn.turnSpeed);
         // Check if we can move "pawn.moveSpeed" units away.
         //    We chose this distance, because that is how far we move in 1 second,
         //    This means, we are looking for collisions "one second in the future."
