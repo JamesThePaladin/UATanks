@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : Controller
+public class PlayerController : Controller
 {
     //input schemes
     public enum InputScheme {WASD, arrowKeys};
@@ -41,6 +41,10 @@ public class InputController : Controller
                 {
                     pawn.Shoot(pawn.shotForce);
                 }
+                if (Input.GetKeyDown(KeyCode.Escape)) 
+                {
+                    Application.Quit();
+                }
                 break;
             case InputScheme.arrowKeys:
                 if (Input.GetKey(KeyCode.UpArrow))
@@ -62,6 +66,10 @@ public class InputController : Controller
                 if (Input.GetKey(KeyCode.RightAlt))
                 {
                     pawn.Shoot(pawn.shotForce);
+                }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Application.Quit();
                 }
                 break;
         }
