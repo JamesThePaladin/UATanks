@@ -261,7 +261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5236090170251746014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.53, y: 0.7346381, z: -5.57758}
+  m_LocalPosition: {x: 0, y: 0.9036381, z: 1.69242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4755346530367824671}
@@ -360,12 +360,13 @@ GameObject:
   - component: {fileID: 3645265432289378101}
   - component: {fileID: 5236090171141152969}
   - component: {fileID: 5236090171141152971}
-  - component: {fileID: 5236090171141152968}
   - component: {fileID: 5236090171141152970}
   - component: {fileID: 5236090171141152964}
+  - component: {fileID: 2241914665530976095}
+  - component: {fileID: 1153093373883572506}
   m_Layer: 0
   m_Name: Inky
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,36 +469,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.65
   m_Center: {x: 0, y: 0.69, z: -0.12}
---- !u!114 &5236090171141152968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6389139012310439086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ca670738fa16c4d8bdb961a9da14ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  motor: {fileID: 5236090171141152964}
-  pawn: {fileID: 5236090171141152970}
-  target: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  avoidanceStage: 0
-  avoidanceTime: 2
-  stateEnterTime: 0
-  stateExitTime: 30
-  aiSenseRadius: 15
-  restingHealthRate: 1
-  fleeDistance: 5
-  currentWaypoint: 3
-  closeEnough: 1
-  aiState: 4
 --- !u!114 &5236090171141152970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,16 +483,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
   shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shotTimerDelay: 2
+  shotTimerDelay: 1
   shellTimeOut: 3
   coolDownTimer: 0
   health: 100
   maxHealth: 100
   moveSpeed: 10
   turnSpeed: 90
-  shotForce: 2000
-  damage: 25
-  points: 100
+  shotForce: 1000
+  damage: 15
+  points: 150
   score: 0
   closeEnough: 1
   viewRadius: 90
@@ -540,6 +511,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tf: {fileID: 4755346530367824671}
   pawn: {fileID: 5236090171141152970}
+--- !u!114 &2241914665530976095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389139012310439086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b9855f170426141a7da318d92ab753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motor: {fileID: 5236090171141152964}
+  pawn: {fileID: 5236090171141152970}
+  target: {fileID: 0}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  avoidanceStage: 0
+  avoidanceTime: 2
+  stateEnterTime: 0
+  stateExitTime: 30
+  aiSenseRadius: 50
+  restingHealthRate: 1
+  fleeDistance: 5
+  currentWaypoint: 3
+  closeEnough: 1
+  stopDistance: 2
+  aiState: 4
+--- !u!65 &1153093373883572506
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389139012310439086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.87, y: 1, z: 2.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6615564112242429750
 GameObject:
   m_ObjectHideFlags: 0

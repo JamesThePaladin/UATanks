@@ -182,7 +182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5203595024641978695}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.53, y: 0.7346381, z: -5.57758}
+  m_LocalPosition: {x: 0, y: 0.9036381, z: 1.69242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9218102352590268091}
@@ -361,12 +361,13 @@ GameObject:
   - component: {fileID: 902321508322278033}
   - component: {fileID: 5203595024008075824}
   - component: {fileID: 5203595024008075826}
-  - component: {fileID: 5203595024008076238}
   - component: {fileID: 5203595024008075825}
   - component: {fileID: 5203595024008075827}
+  - component: {fileID: 2964374403321051448}
+  - component: {fileID: 3354916977378610243}
   m_Layer: 0
   m_Name: Greeny
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,36 +470,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.65
   m_Center: {x: 0, y: 0.69, z: -0.12}
---- !u!114 &5203595024008076238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402208243620679946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ca670738fa16c4d8bdb961a9da14ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  motor: {fileID: 5203595024008075825}
-  pawn: {fileID: 5203595024008075827}
-  target: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  avoidanceStage: 0
-  avoidanceTime: 2
-  stateEnterTime: 0
-  stateExitTime: 30
-  aiSenseRadius: 10
-  restingHealthRate: 1
-  fleeDistance: 5
-  currentWaypoint: 1
-  closeEnough: 1
-  aiState: 4
 --- !u!114 &5203595024008075825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,13 +505,57 @@ MonoBehaviour:
   maxHealth: 100
   moveSpeed: 10
   turnSpeed: 90
-  shotForce: 2000
-  damage: 25
+  shotForce: 1000
+  damage: 10
   points: 100
   score: 0
   closeEnough: 1
   viewRadius: 90
   fieldOfView: 45
+--- !u!114 &2964374403321051448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402208243620679946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799a850bda2382e4fbf9d373a19a287a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motor: {fileID: 5203595024008075825}
+  pawn: {fileID: 5203595024008075827}
+  target: {fileID: 0}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  avoidanceStage: 0
+  avoidanceTime: 2
+  stateEnterTime: 0
+  stateExitTime: 15
+  aiSenseRadius: 20
+  restingHealthRate: 4
+  fleeDistance: 1
+  currentWaypoint: 1
+  closeEnough: 1
+  stopDistance: 4
+  aiState: 4
+--- !u!65 &3354916977378610243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402208243620679946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.87, y: 1, z: 2.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8375714446455288347
 GameObject:
   m_ObjectHideFlags: 0

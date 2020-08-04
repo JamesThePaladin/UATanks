@@ -108,16 +108,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
   shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shotTimerDelay: 2
+  shotTimerDelay: 1
   shellTimeOut: 3
   coolDownTimer: 0
-  health: 100
-  maxHealth: 100
-  moveSpeed: 10
-  turnSpeed: 90
-  shotForce: 2000
-  damage: 25
-  points: 100
+  health: 150
+  maxHealth: 150
+  moveSpeed: 15
+  turnSpeed: 180
+  shotForce: 1000
+  damage: 20
+  points: 200
   score: 0
   closeEnough: 1
   viewRadius: 90
@@ -178,11 +178,12 @@ MonoBehaviour:
   avoidanceTime: 2
   stateEnterTime: 0
   stateExitTime: 30
-  aiSenseRadius: 20
+  aiSenseRadius: 100
   restingHealthRate: 1
   fleeDistance: 5
   currentWaypoint: 0
   closeEnough: 1
+  stopDistance: 5
   aiState: 4
 --- !u!1001 &3366756532730723892
 PrefabInstance:

@@ -7,7 +7,7 @@ public class AIController : Controller
 {
     //components
     public Transform target; //transform for our AI's target
-    private Transform tf; //transform of our AI pawn
+    protected Transform tf; //transform of our AI pawn
     public List<Transform> waypoints; //list of waypoints
 
     //data
@@ -21,9 +21,10 @@ public class AIController : Controller
     public float fleeDistance = 1.0f;
     public int currentWaypoint = 0; //for ai's current valyue in waypoint index
     public float closeEnough = 1.0f; //value forif our ai is close enough to its waypoint
+    public float stopDistance; //to stop AI before they smack into our player
 
     public enum AIState { Chase, ChaseAndFire, CheckForFlee, Flee, Patrol, Rest };
-    public AIState aiState = AIState.Chase;
+    public AIState aiState = AIState.Patrol;
 
     // Start is called before the first frame update
     void Awake()
@@ -290,15 +291,19 @@ public class AIController : Controller
         // Check if we can move "pawn.moveSpeed" units away.
         //    We chose this distance, because that is how far we move in 1 second,
         //    This means, we are looking for collisions "one second in the future."
-        if (CanMove(pawn.moveSpeed))
+        float distanceToTarget = Vector3.Distance(target.transform.position + offset, tf.position);
+        if ((distanceToTarget) > stopDistance)
         {
-            //move forward
-            motor.Move(pawn.moveSpeed);
-        }
-        else
-        {
-            //enter obstacle avoidance stage 2
-            avoidanceStage = 1;
+            if (CanMove(pawn.moveSpeed))
+            {
+                //move forward
+                motor.Move(pawn.moveSpeed);
+            }
+            else
+            {
+                //enter obstacle avoidance stage 2
+                avoidanceStage = 1;
+            } 
         }
     }
 

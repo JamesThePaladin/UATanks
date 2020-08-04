@@ -24,7 +24,7 @@ Fire Rate: 1
 Inky (Blue) - Inky is Blinky's devilish counterpart. Though she may be slower and seemingly not as robust as Blinky she does 
 have her talents. Inky is the same color as player 1 and can cause confusion when she gets in close. Her slower movement
 also allows her to deal with obstacles better than Blinky. She squeezes through and flushes the player out of their hiding
-spot for her stronger sister to destroy. If a player becomes too focused on the heavy hitter and forgets about her they
+spot for her stronger sister to destroy. Inky will try to attack the player from their right side. If a player becomes too focused on the heavy hitter and forgets about her they
 will regret it.
 
 Max Health: 100
@@ -37,7 +37,7 @@ Fire Rate: 1
 Greeny (Green) - At first glace Greeny may not seem too threatening. At the start of the game she will probably patrol around the 
 edge of the field for a while as she cannot hear as well as the two previously mentioned tanks. But if she manages to sneak 
 away from a fight she can heal up twice as fast! Because of this she is extremely brave and will stop fleeing in half
-the time as the rest of the tanks.
+the time as the rest of the tanks. Greeny will always try to to sneak up behind the player.
 
 Max Health: 100
 Move Speed: 10
@@ -49,9 +49,9 @@ Fire Rate: 2
 Clyde (Yellow) - Clyde is not as smart or as perceptive as his sisters. In fact, he will probably miss the entire battle just 
 patrolling around in his own world. It is safe to say that most of the time, he is not a threat. But, that doesn't mean
 you should put your guard down. Clyde can turn just has fast as his sister Blinky and will catch confident players
-off-guard if they are not watching their health. He is the most dangerous when an unaware player wanders into his path
-while battling his sisters. Players who pull him into the fray before taking down his sisters are sure to have a 
-rough time surviving.
+off-guard if they are not watching their health. He isn't too smart so he will always try to come at players head on.
+He is the most dangerous when an unaware player wanders into his path while battling his sisters. 
+Players who pull him into the fray before taking down his sisters are sure to have a rough time surviving.
 
 Max Health: 100
 Move Speed: 10
