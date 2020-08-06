@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class AIController : Controller
 {
     //components
-    public Transform target; //transform for our AI's target
+    public GameObject target; //our AI's target
+    public Transform targetTf; //transform for our AI's target
     protected Transform tf; //transform of our AI pawn
     public List<Transform> waypoints; //list of waypoints
+    public LayerMask playerLayer;
 
     //data
     public int avoidanceStage = 0;
@@ -16,21 +19,19 @@ public class AIController : Controller
     private float exitTime = 0.5f; //var for CanMove exit times
     public float stateEnterTime; //variable to store the time a state was entered
     public float stateExitTime = 30.0f; //variable to hold the time for exiting states
-    public float aiSenseRadius; //for AI hearing
     public float restingHealthRate; //in hp/second
     public float fleeDistance = 1.0f;
     public int currentWaypoint = 0; //for ai's current valyue in waypoint index
     public float closeEnough = 1.0f; //value forif our ai is close enough to its waypoint
     public float stopDistance; //to stop AI before they smack into our player
 
-    public enum AIState { Chase, ChaseAndFire, CheckForFlee, Flee, Patrol, Rest };
+    public enum AIState { Chase, ChaseAndFire, CheckForFlee, Flee, LookAt, Patrol, Rest };
     public AIState aiState = AIState.Patrol;
 
     // Start is called before the first frame update
     void Awake()
     {
         tf = GetComponent<Transform>();
-        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         pawn = GetComponent<Pawn>();
         motor = GetComponent<TankMotor>();
     }
@@ -50,7 +51,7 @@ public class AIController : Controller
                 else
                 {
                     //otherwise chase player
-                    Chase(GameManager.instance.player, Vector3.zero);
+                    Chase(target, Vector3.zero);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -59,11 +60,15 @@ public class AIController : Controller
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
-                //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                //check to see if we can still see our player
+                foreach (GameObject target in GameManager.instance.players) 
                 {
-                    //chase and fire at them
-                    ChangeState(AIState.ChaseAndFire);
+                    //if we can't see our player
+                    if (!CanSee(target)) 
+                    {
+                        //go to look at state to look for them
+                        ChangeState(AIState.Patrol);
+                    }
                 }
                 break;
             case AIState.ChaseAndFire:
@@ -76,7 +81,7 @@ public class AIController : Controller
                 else
                 {
                     //otherwise chase the player
-                    Chase(GameManager.instance.player, Vector3.zero);
+                    Chase(target, Vector3.zero);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
                 }
@@ -87,11 +92,15 @@ public class AIController : Controller
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
-                //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) > aiSenseRadius)
+                //check to see if we can still see our player
+                foreach (GameObject target in GameManager.instance.players)
                 {
-                    //chase them
-                    ChangeState(AIState.Chase);
+                    //if we can't see our player
+                    if (!CanSee(target))
+                    {
+                        //go to look at state to look for them
+                        ChangeState(AIState.Patrol);
+                    }
                 }
                 break;
             case AIState.Flee:
@@ -110,6 +119,25 @@ public class AIController : Controller
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.CheckForFlee);
+                }
+                break;
+            case AIState.LookAt:
+                if (avoidanceStage != 0)
+                {
+                    //do avoid manuevers
+                    Avoidance();
+                }
+                else
+                {
+                    motor.RotateTowards(targetTf.position, pawn.turnSpeed); 
+                }
+                foreach (GameObject target in GameManager.instance.players)
+                {
+                    if (CanSee(target))
+                    {
+                        SetTarget(target, target.transform);
+                        ChangeState(AIState.Chase);
+                    }
                 }
                 break;
             case AIState.Patrol:
@@ -132,10 +160,15 @@ public class AIController : Controller
                     ChangeState(AIState.CheckForFlee);
                 }
                 //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                foreach (GameObject target in GameManager.instance.players)
                 {
-                    //chase them
-                    ChangeState(AIState.Chase);
+                    //if we can't see our player
+                    if (CanHear(target))
+                    {
+                        SetTarget(target, target.transform);
+                        //go to look at state to look for them
+                        ChangeState(AIState.LookAt);
+                    }
                 }
                 break;
             case AIState.CheckForFlee:
@@ -151,40 +184,47 @@ public class AIController : Controller
                     CheckForFlee();
                 }
                 // Check for Transitions
-                //else if our player is within our sense radius
-                if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                if (Time.time >= stateEnterTime + stateExitTime)
                 {
-                    //flee so we don't die
-                    ChangeState(AIState.Flee);
-                }
-                else
-                {
-                    //otherwise rest
                     ChangeState(AIState.Rest);
+                }
+                //else if our player is within our sense radius
+                foreach (GameObject target in GameManager.instance.players)
+                {
+                    if (CanHear(target))
+                    {
+                        //flee so we don't die
+                        ChangeState(AIState.Flee);
+                    }
                 }
                 break;
             case AIState.Rest:
                 Rest();
-                //check for transitions
-                //else if our player is within our sense radius
-                if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                if (avoidanceStage != 0) 
                 {
-                    //flee so we don't die
-                    ChangeState(AIState.Flee);
+                    Avoidance();
                 }
-                //otherwise if our health is greater than or equal to our max health
-                else if (pawn.health >= pawn.maxHealth)
+                //check for transitions
+                foreach (GameObject target in GameManager.instance.players) 
+                {
+                    if (CanHear(target))
+                    {
+                        //flee so we don't die
+                        ChangeState(AIState.Flee);
+                    }
+                }
+                //if our health is greater than or equal to our max health
+                if (pawn.health >= pawn.maxHealth)
                 {
                     //else if our player is within our sense radius
-                    if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                    foreach (GameObject target in GameManager.instance.players)
                     {
-                        //chase them
-                        ChangeState(AIState.Chase);
-                    }
-                    else 
-                    {
-                        //if not go back to patrolling
-                        ChangeState(AIState.Patrol);
+                        //if we can't see our player
+                        if (CanHear(target))
+                        {
+                            //go to look at state to look for them
+                            ChangeState(AIState.LookAt);
+                        }
                     }
                 }
                 break;
@@ -229,6 +269,26 @@ public class AIController : Controller
         }
     }
 
+    public bool CanHear(GameObject target)
+    {
+        // Create local variables and connect them to the pawn to reach the data we need from it.
+        // Get data from the target pawn that says how much noise it is making
+        float targetNoise = target.GetComponent<Pawn>().noise;
+        float targetNoiseRange = target.GetComponent<Pawn>().noiseRange;
+        float hDistance = pawn.hearingDistance;
+        if (targetNoise > 0)
+        {
+            // If our distance is <= the distance we can hear + the distance the pawn's noise travels
+            if (Vector3.Distance(target.transform.position, tf.position) <= hDistance + targetNoiseRange)
+            {
+                //we can hear them
+                return true;
+            } 
+        }
+         //otherwise we can't hear them, return false
+        return false;
+    }
+
     public bool CanMove(float speed)
     {
         //raycast foward by the distance we sent in
@@ -260,16 +320,18 @@ public class AIController : Controller
             if (Vector3.Distance(pawn.transform.position, player.transform.position) < pawn.fieldOfView / 2)
             {
                 // Raycast
-                RaycastHit2D hitInfo = Physics2D.Raycast(pawn.transform.position, agentToPlayerVector, pawn.viewRadius);
-                // If the first object we hit is our target 
-                if (hitInfo.collider.gameObject == player)
+                if (Physics.Raycast(pawn.transform.position, agentToPlayerVector, out RaycastHit hit, pawn.viewRadius, playerLayer))
                 {
-                    // return true 
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    // If the first object we hit is our target 
+                    if (hit.collider.gameObject == player)
+                    {
+                        // return true 
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -315,7 +377,7 @@ public class AIController : Controller
     public void Flee()
     {
         //the vector from ai to target is target position minus ai position
-        Vector3 vectorToTarget = target.position - tf.position;
+        Vector3 vectorToTarget = targetTf.position - tf.position;
         //Flip this vector by -1 to get a vector AWAY from target
         Vector3 fleeToVector = -vectorToTarget;
         //normalize for a magnitude of 1
@@ -327,6 +389,11 @@ public class AIController : Controller
         Vector3 fleePosition = fleeToVector + tf.position;
         motor.RotateTowards(fleePosition, pawn.turnSpeed);
         motor.Move(pawn.moveSpeed);
+    }
+
+    public void LastSeen(GameObject target) 
+    {
+        //TODO: finish this state
     }
 
     public void Patrol()
@@ -364,5 +431,11 @@ public class AIController : Controller
         pawn.health += restingHealthRate * Time.deltaTime;
         //don't go over max health
         pawn.health = Mathf.Min(pawn.health, pawn.maxHealth);
+    }
+
+    private void SetTarget(GameObject newTarget, Transform newTargetTf) 
+    {
+        target = newTarget;
+        targetTf = newTargetTf;
     }
 }

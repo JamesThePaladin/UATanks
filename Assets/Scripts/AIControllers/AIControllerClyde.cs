@@ -19,7 +19,7 @@ public class AIControllerClyde : AIController
                 else
                 {
                     //otherwise chase player
-                    Chase(GameManager.instance.player, Vector3.forward);
+                    Chase(target, Vector3.zero);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -28,11 +28,15 @@ public class AIControllerClyde : AIController
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
-                //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                //check to see if we can still see our player
+                foreach (GameObject target in GameManager.instance.players)
                 {
-                    //chase and fire at them
-                    ChangeState(AIState.ChaseAndFire);
+                    //if we can't see our player
+                    if (!CanSee(target.GetComponent<GameObject>()))
+                    {
+                        //go to look at state to look for them
+                        ChangeState(AIState.LookAt);
+                    }
                 }
                 break;
             case AIState.ChaseAndFire:
@@ -45,7 +49,7 @@ public class AIControllerClyde : AIController
                 else
                 {
                     //otherwise chase the player
-                    Chase(GameManager.instance.player, Vector3.forward);
+                    Chase(target, Vector3.zero);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
                 }
@@ -56,11 +60,15 @@ public class AIControllerClyde : AIController
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
                 }
-                //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) > aiSenseRadius)
+                //check to see if we can still see our player
+                foreach (GameObject target in GameManager.instance.players)
                 {
-                    //chase them
-                    ChangeState(AIState.Chase);
+                    //if we can't see our player
+                    if (!CanSee(target.GetComponent<GameObject>()))
+                    {
+                        //go to look at state to look for them
+                        ChangeState(AIState.LookAt);
+                    }
                 }
                 break;
             case AIState.Flee:
@@ -79,6 +87,24 @@ public class AIControllerClyde : AIController
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.CheckForFlee);
+                }
+                break;
+            case AIState.LookAt:
+                if (avoidanceStage != 0)
+                {
+                    //do avoid manuevers
+                    Avoidance();
+                }
+                else
+                {
+                    motor.RotateTowards(targetTf.position, pawn.turnSpeed);
+                }
+                foreach (GameObject target in GameManager.instance.players)
+                {
+                    if (CanSee(target))
+                    {
+                        ChangeState(AIState.Chase);
+                    }
                 }
                 break;
             case AIState.Patrol:
@@ -101,10 +127,14 @@ public class AIControllerClyde : AIController
                     ChangeState(AIState.CheckForFlee);
                 }
                 //else if our player is within our sense radius
-                else if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                foreach (GameObject target in GameManager.instance.players)
                 {
-                    //chase them
-                    ChangeState(AIState.Chase);
+                    //if we can't see our player
+                    if (CanHear(target.GetComponent<GameObject>()))
+                    {
+                        //go to look at state to look for them
+                        ChangeState(AIState.LookAt);
+                    }
                 }
                 break;
             case AIState.CheckForFlee:
@@ -120,40 +150,48 @@ public class AIControllerClyde : AIController
                     CheckForFlee();
                 }
                 // Check for Transitions
-                //else if our player is within our sense radius
-                if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                if (Time.time >= stateEnterTime + stateExitTime)
                 {
-                    //flee so we don't die
-                    ChangeState(AIState.Flee);
-                }
-                else
-                {
-                    //otherwise rest
                     ChangeState(AIState.Rest);
+                }
+                //else if our player is within our sense radius
+                foreach (GameObject target in GameManager.instance.players)
+                {
+                    if (CanHear(target))
+                    {
+                        //flee so we don't die
+                        ChangeState(AIState.Flee);
+                    }
                 }
                 break;
             case AIState.Rest:
                 Rest();
-                //check for transitions
-                //else if our player is within our sense radius
-                if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                if (avoidanceStage != 0)
                 {
-                    //flee so we don't die
-                    ChangeState(AIState.Flee);
+                    Avoidance();
                 }
-                //otherwise if our health is greater than or equal to our max health
-                else if (pawn.health >= pawn.maxHealth)
+                //check for transitions
+                foreach (GameObject target in GameManager.instance.players)
+                {
+                    if (CanHear(target))
+                    {
+                        //flee so we don't die
+                        ChangeState(AIState.Flee);
+                    }
+                }
+                //if our health is greater than or equal to our max health
+                if (pawn.health >= pawn.maxHealth)
                 {
                     //else if our player is within our sense radius
-                    if (Vector3.Distance(target.position, tf.position) <= aiSenseRadius)
+                    //else if our player is within our sense radius
+                    foreach (GameObject target in GameManager.instance.players)
                     {
-                        //chase them
-                        ChangeState(AIState.Chase);
-                    }
-                    else
-                    {
-                        //if not go back to patrolling
-                        ChangeState(AIState.Patrol);
+                        //if we can't see our player
+                        if (CanHear(target.GetComponent<GameObject>()))
+                        {
+                            //go to look at state to look for them
+                            ChangeState(AIState.LookAt);
+                        }
                     }
                 }
                 break;

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2007625824981281331}
   - component: {fileID: 2007625824981281328}
   - component: {fileID: 1714168480}
+  - component: {fileID: 4825603761425229806}
+  - component: {fileID: 1714168481}
   m_Layer: 10
   m_Name: PlayerPawn
   m_TagString: Player
@@ -82,15 +84,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shell: {fileID: 5845955624572756043, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
   shellRb: {fileID: 1595236628235646013, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
-  shotTimerDelay: 2
+  shotTimerDelay: 1
   shellTimeOut: 3
+  coolDownTimer: 0
   health: 100
+  maxHealth: 100
   moveSpeed: 10
   turnSpeed: 180
   shotForce: 1000
-  damage: 25
+  damage: 45
   points: 150
   score: 0
+  noise: 0
+  noiseRange: 10
+  isMakingNoise: 0
+  closeEnough: 0
+  viewRadius: 10
+  fieldOfView: 180
+  hearingDistance: 10
 --- !u!114 &1714168480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +117,32 @@ MonoBehaviour:
   motor: {fileID: 2007625824981281331}
   pawn: {fileID: 2007625824981281328}
   input: 0
+--- !u!65 &4825603761425229806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007625824981281341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.87, y: 1, z: 2.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &1714168481
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007625824981281341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.69, z: -0.12}
 --- !u!1 &2970509334632370829
 GameObject:
   m_ObjectHideFlags: 0

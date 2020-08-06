@@ -10,7 +10,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     //game object camera is following
-    public GameObject player;
+    public UnityEngine.GameObject player;
     //offset by which it follows
     private Vector3 offset;
     Vector3 playerPrevPos, playerMoveDir;

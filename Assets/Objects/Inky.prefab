@@ -494,9 +494,13 @@ MonoBehaviour:
   damage: 15
   points: 150
   score: 0
+  noise: 0
+  noiseRange: 10
+  isMakingNoise: 0
   closeEnough: 1
   viewRadius: 90
   fieldOfView: 45
+  hearingDistance: 10
 --- !u!114 &5236090171141152964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +530,7 @@ MonoBehaviour:
   motor: {fileID: 5236090171141152964}
   pawn: {fileID: 5236090171141152970}
   target: {fileID: 0}
+  targetTf: {fileID: 0}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -535,8 +540,7 @@ MonoBehaviour:
   avoidanceTime: 2
   stateEnterTime: 0
   stateExitTime: 30
-  aiSenseRadius: 50
-  restingHealthRate: 1
+  restingHealthRate: 5
   fleeDistance: 5
   currentWaypoint: 3
   closeEnough: 1

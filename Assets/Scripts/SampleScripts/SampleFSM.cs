@@ -201,7 +201,7 @@ public class SampleFSM : Controller
 
     public void CheckForFlee() 
     {
-        //TODO: write CheckForFlee state
+        //Do nothing!
     }
 
     public void Flee()

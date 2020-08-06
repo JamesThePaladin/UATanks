@@ -10,7 +10,7 @@ public class TankMotor : MonoBehaviour
     private CharacterController characterController;
     public Transform tf;
     public Pawn pawn;
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,11 @@ public class TankMotor : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        
+    }
+
     //function for tank movement
     public void Move(float speed) 
     {
@@ -28,7 +33,7 @@ public class TankMotor : MonoBehaviour
         Vector3 speedVector = tf.forward * speed;
         //call simple move and give it our vector
         characterController.SimpleMove(speedVector);
-
+        pawn.noise++;
     }
 
     //tank turning functions

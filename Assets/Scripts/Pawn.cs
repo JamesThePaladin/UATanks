@@ -25,11 +25,15 @@ public class Pawn : MonoBehaviour
     public float damage = 25; //float for damage done by pawn shell's
     public int points; //how many points this pawn is worth when destroyed
     public int score; //the personal score of this pawn
+    public float noise = 0; //float for how much noise our pawn is making
+    public float noiseRange = 10; //float for how far the noise our pawn is making travels
+    public bool isMakingNoise = false; //bool for if pawn is making noise or not
 
     [Header("AI Settings")]
     public float closeEnough; //close enough distance to waypoint
-    public float viewRadius; //for radius of player detection
-    public float fieldOfView; //for Ai field of view
+    public float viewRadius = 10; //for radius of player detection
+    public float fieldOfView = 180f; //for Ai field of view
+    public float hearingDistance = 10; //distance ai can hear
 
     protected virtual void Start()
     {
@@ -45,13 +49,23 @@ public class Pawn : MonoBehaviour
     {
         //cool down timer decrememnted by seconds past
         coolDownTimer -= Time.deltaTime;
+
+        //check to see if we are making noise
+        if (noise > 0)
+        {
+            isMakingNoise = true;
+        }
+        else 
+        {
+            isMakingNoise = false;
+        }
     }
 
     public void Shoot(float shotForce)
     {
         if (coolDownTimer <= 0)
         {
-            //create a vector 3 for shot direction tat is equal to our firing zone's forward vector multiplied by shotForce
+            //create a vector 3 for shot direction that is equal to our firing zone's forward vector multiplied by shotForce
             Vector3 shotDir = firingZone.forward * shotForce;
             //instantiate a shell at the firing zone's position and rotation, save it in shellInstance.
             GameObject shellInstance = Instantiate(shell, firingZone.position, firingZone.rotation);
