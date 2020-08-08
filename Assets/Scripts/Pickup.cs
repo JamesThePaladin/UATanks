@@ -38,6 +38,8 @@ public class Pickup : MonoBehaviour
             
         }
 
+        //decrement the number of powerups in the game
+        GameManager.instance.currentPowerUps--;
         //Destroy this pickup
         Destroy(gameObject);
     }

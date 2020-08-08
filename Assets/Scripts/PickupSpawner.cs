@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
-    public List<GameObject> pickupPrefabs;
-    public float spawnDelay;
-    private float nextSpawnTime;
+    
     private Transform tf;
+    public float minX = 10f;
+    public float maxX = 10f;
+    public float minZ = 10f;
+    public float maxZ = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
         tf = gameObject.GetComponent<Transform>();
-        nextSpawnTime = Time.time + spawnDelay;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextSpawnTime) 
-        {
-            int random = Random.Range(0, pickupPrefabs.Count);
-            GameObject powerup = Instantiate(pickupPrefabs[random], tf.position, tf.rotation);
-            nextSpawnTime = Time.time + spawnDelay;
-        }
+        float randomX = Random.Range(minX, maxX);
+        float randomZ = Random.Range(minZ, maxZ);
+        tf.position = new Vector3(randomX, 0, randomZ);
     }
 }
