@@ -6,10 +6,11 @@ using UnityEngine;
 public class PowerUp
 {
     //modifiers
-    public float speedModifier;
+    public float speedModifier = 1.0f;
     public float healthModifier;
-    public float maxHealthModifier;
+    public float maxHealthModifier = 1.0f;
     public float fireRateModifier;
+    public float damageModifier;
     public bool isPermanent;
     //powerup duration
     public float duration;
@@ -20,17 +21,19 @@ public class PowerUp
     public void OnActivate(Pawn target) 
     {
         target.moveSpeed *= speedModifier;
-        target.health *= healthModifier;
+        target.health += healthModifier;
         target.maxHealth *= maxHealthModifier;
         target.shotTimerDelay -= fireRateModifier;
+        target.damage *= damageModifier;
     }
 
     //decrease stats to original values
     public void OnDeactivate(Pawn target) 
     {
         target.moveSpeed /= speedModifier;
-        target.health /= healthModifier;
+        target.health -= healthModifier;
         target.maxHealth /= maxHealthModifier;
         target.shotTimerDelay += fireRateModifier;
+        target.damage /= damageModifier;
     }
 }

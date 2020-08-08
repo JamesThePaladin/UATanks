@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 8749189005076305914}
   - component: {fileID: 2293088839674757514}
   - component: {fileID: 3862557874655977042}
+  - component: {fileID: -1023709062257491476}
   m_Layer: 0
   m_Name: Player2Pawn
   m_TagString: Enemy
@@ -593,6 +594,19 @@ MonoBehaviour:
   motor: {fileID: 8749189005076305912}
   pawn: {fileID: 8749189005076305914}
   input: 1
+--- !u!114 &-1023709062257491476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333277396104699075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f283f16b43844c87af83105e67cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerups: []
 --- !u!1 &7550101356138675741
 GameObject:
   m_ObjectHideFlags: 0
