@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1692233363616331841
+--- !u!1 &1071783361597964881
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1692233363616331843}
-  - component: {fileID: 1692233363616331842}
+  - component: {fileID: 6095176724388427465}
+  - component: {fileID: -8642087433615265283}
   m_Layer: 0
-  m_Name: PickupSpawner
-  m_TagString: PickupSpawner
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Name: enemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1692233363616331843
+--- !u!4 &6095176724388427465
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692233363616331841}
+  m_GameObject: {fileID: 1071783361597964881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.12, y: 0.313, z: 11.66}
+  m_LocalPosition: {x: 0.101634264, y: 19.179407, z: -32.52056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1692233363616331842
+--- !u!114 &-8642087433615265283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692233363616331841}
+  m_GameObject: {fileID: 1071783361597964881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 775a8487e777e644987f8fe11795ed3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7703fbc33c70c3b488c821bc52cf1b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -25
-  maxX: 25
-  minZ: -25
-  maxZ: 25
