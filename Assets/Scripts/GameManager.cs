@@ -8,25 +8,38 @@ public class GameManager : MonoBehaviour
     //variable that holds this instance of the GameManager
     public static GameManager instance;
 
-    [Header("Lists")]
-    //list to hold Pickup spawners
-    public List<Transform> pickupSpawners;
+    [Header("Map Stuff")]
+    //map tile grid array
+    public Room[,] grid;
+
+    [Header("Enemy Stuff")]
     //list to hold all enemies in game
     public List<GameObject> enemies;
+    //list of all enemy prefabs to spawn as enemies
+    public List<GameObject> enemyPrefabs;
     //list to hold enemy spawners
     public List<GameObject> enemySpawners;
+    //list of waypoints for patrolling
+    public List<Transform> waypoints;
+    //int for currrent enemies on the map
+    public int currentEnemies;
+    //int for max enemies on the map
+    public int maxEnemies;
+    //spawn cooldown for enemy spawns
+    public float enemySpawnDelay;
+
+    [Header("Player Stuff")]
     //list for all players in the game
     public GameObject[] players;
     //list for player spawners
     public List<GameObject> playerSpawners;
-    //map tile grid array
-    public Room[,] grid;
-
+    
     [Header("PowerUp Stuff")]
+    //list to hold Pickup spawners
+    public List<Transform> pickupSpawners;
     public GameObject powerup;
     public List<GameObject> pickupPrefabs;
     public float spawnDelay = 10.0f;
-    
     public float currentPowerUps;
     public float maxPowerUps = 4.0f;
 

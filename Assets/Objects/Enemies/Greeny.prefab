@@ -532,11 +532,9 @@ MonoBehaviour:
   pawn: {fileID: 5203595024008075827}
   target: {fileID: 0}
   targetTf: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   avoidanceStage: 0
   avoidanceTime: 2
   stateEnterTime: 0

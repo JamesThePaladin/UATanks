@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    [Header("Map Rooms")]
     public int rows;
     public int cols;
     private float roomWidth = 50.0f;
     private float roomHeight = 50.0f;
     public GameObject[] roomPrefabs;
 
+    [Header("Map Seed")]
+    public int mapSeed;
+    public int mapOfDaySeed;
+    public bool isMapOfTheDay = false;
+    public bool isRandomMap = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        mapSeed = (DateToInt(DateTime.Now));
+        //set our map of the day seed
+        mapOfDaySeed = DateToInt(DateTime.Now.Date);
         //Generate Map
         GenerateMap();
     }
@@ -26,6 +37,18 @@ public class MapGenerator : MonoBehaviour
     //generates the game map
     public void GenerateMap() 
     {
+        //if the player wants the map of the day
+        if (isMapOfTheDay)
+        {
+            //initialize the generator with our map of the day seed
+            UnityEngine.Random.InitState(mapOfDaySeed);
+        }
+        else if (isRandomMap)
+        {
+            //Otherwise, initialize the random generator with our random seed
+            UnityEngine.Random.InitState(mapSeed);
+        }
+
         //clear out the grid - "which column" is our X, "which row" is our Y
         GameManager.instance.grid = new Room[cols, rows];
 
@@ -91,9 +114,15 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    public int DateToInt(DateTime dateToUse) 
+    {
+        //add our date into an int and return it
+        return dateToUse.Year + dateToUse.Month + dateToUse.Day + dateToUse.Hour + dateToUse.Minute + dateToUse.Second + dateToUse.Millisecond;
+    }
+
     //Returns a random room
     public GameObject RandomRoomPrefab() 
     {
-        return roomPrefabs[Random.Range(0, roomPrefabs.Length)];
+        return roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
     }
 }

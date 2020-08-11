@@ -377,6 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
         type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
       propertyPath: players.Array.data[0]
       value: 
       objectReference: {fileID: 1024865880}
@@ -408,6 +413,45 @@ PrefabInstance:
         type: 3}
       propertyPath: maxPowerUps
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: spawnDelay
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4931911118887713618, guid: 34386c19efdc58b4697d48237ebad47b,
+        type: 3}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6389139012310439086, guid: dd670eb711b56ad468cc01a28134ef43,
+        type: 3}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7402208243620679946, guid: 7c76eeea5ab720643b3993979a9958ad,
+        type: 3}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: enemyPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 213418698647450311, guid: 2a69f4920b37cf142ac7b95b5d65da3d,
+        type: 3}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: maxEnemies
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: enemySpawnDelay
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7acc9013595dfbc41a1212429311d179, type: 3}
@@ -615,6 +659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MapGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090993280639206175, guid: 4cd27079c73fb35479493a64428a35df,
+        type: 3}
+      propertyPath: isMapOfTheDay
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd27079c73fb35479493a64428a35df, type: 3}

@@ -4,13 +4,14 @@ using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class AIController : Controller
+[RequireComponent(typeof(Pawn))]
+[RequireComponent(typeof(TankMotor))]
+public class  AIController : Controller 
 {
     //components
     public GameObject target; //our AI's target
     public Transform targetTf; //transform for our AI's target
     protected Transform tf; //transform of our AI pawn
-    public List<Transform> waypoints; //list of waypoints
     public LayerMask playerLayer;
 
     //data
@@ -398,7 +399,7 @@ public class AIController : Controller
 
     public void Patrol()
     {
-        if (motor.RotateTowards(waypoints[currentWaypoint].position, pawn.turnSpeed))
+        if (motor.RotateTowards(GameManager.instance.waypoints[currentWaypoint].position, pawn.turnSpeed))
         {
             //Do nothing!
         }
@@ -408,10 +409,10 @@ public class AIController : Controller
             motor.Move(pawn.moveSpeed);
         }
         //if close to waypoint
-        if (Vector3.SqrMagnitude(waypoints[currentWaypoint].position - tf.position) < closeEnough)
+        if (Vector3.SqrMagnitude(GameManager.instance.waypoints[currentWaypoint].position - tf.position) < closeEnough)
         {
             //and if the waypoint index hasn't been completed
-            if (currentWaypoint < waypoints.Count - 1)
+            if (currentWaypoint < GameManager.instance.waypoints.Count - 1)
             {
                 //move to the next patrol waypoint
                 currentWaypoint++;
