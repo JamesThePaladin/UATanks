@@ -543,7 +543,7 @@ MonoBehaviour:
   currentWaypoint: 3
   closeEnough: 1
   stopDistance: 2
-  aiState: 4
+  aiState: 5
 --- !u!65 &1153093373883572506
 BoxCollider:
   m_ObjectHideFlags: 0

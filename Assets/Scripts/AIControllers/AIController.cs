@@ -43,6 +43,12 @@ public class  AIController : Controller
         switch (aiState)
         {
             case AIState.Chase:
+                //check to see if we can still see our player
+                if (!CanSee(target))
+                {
+                    ChangeState(AIState.Patrol);
+                    return;
+                }
                 //if avoidance stage is not zero (or if we are avoiding)
                 if (avoidanceStage != 0)
                 {
@@ -52,7 +58,12 @@ public class  AIController : Controller
                 else
                 {
                     //otherwise chase player
-                    Chase(target, Vector3.zero);
+                    if( Chase(target, Vector3.zero) )
+                    {
+                        //within range
+                        ChangeState(AIState.ChaseAndFire);
+                        return;
+                    }
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -60,18 +71,9 @@ public class  AIController : Controller
                 {
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
-                //check to see if we can still see our player
-                foreach (GameObject target in GameManager.instance.players) 
-                {
-                    //if we can't see our player
-                    if (!CanSee(target)) 
-                    {
-                        //go to look at state to look for them
-                        ChangeState(AIState.Patrol);
-                    }
-                }
-                break;
+            break;
             case AIState.ChaseAndFire:
                 //if avoidance stage is not zero (or if we are avoiding)
                 if (avoidanceStage != 0)
@@ -81,10 +83,10 @@ public class  AIController : Controller
                 }
                 else
                 {
-                    //otherwise chase the player
-                    Chase(target, Vector3.zero);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
+                    //otherwise chase the player
+                    Chase(target, Vector3.zero);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -92,17 +94,17 @@ public class  AIController : Controller
                 {
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
-                //check to see if we can still see our player
-                foreach (GameObject target in GameManager.instance.players)
+
+                //if we can't see our player
+                if (!CanSee(target))
                 {
-                    //if we can't see our player
-                    if (!CanSee(target))
-                    {
-                        //go to look at state to look for them
-                        ChangeState(AIState.Patrol);
-                    }
+                    //go to look at state to look for them
+                    ChangeState(AIState.Patrol);
+                    return;
                 }
+
                 break;
             case AIState.Flee:
                 //if avoidance stage is not zero (or if we are avoiding)
@@ -120,6 +122,7 @@ public class  AIController : Controller
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
                 break;
             case AIState.LookAt:
@@ -132,14 +135,14 @@ public class  AIController : Controller
                 {
                     motor.RotateTowards(targetTf.position, pawn.turnSpeed); 
                 }
-                foreach (GameObject target in GameManager.instance.players)
+
+                if (CanSee(target))
                 {
-                    if (CanSee(target))
-                    {
-                        SetTarget(target, target.transform);
-                        ChangeState(AIState.Chase);
-                    }
+                    SetTarget(target, target.transform);
+                    ChangeState(AIState.Chase);
+                    return;
                 }
+
                 break;
             case AIState.Patrol:
                 //if avoidance stage is not zero (or if we are avoiding)
@@ -159,16 +162,18 @@ public class  AIController : Controller
                 {
                     //change state to check for flee
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
                 //else if our player is within our sense radius
-                foreach (GameObject target in GameManager.instance.players)
+                foreach (GameObject _player in GameManager.instance.players)
                 {
                     //if we can't see our player
-                    if (CanHear(target))
+                    if (CanHear(_player))
                     {
-                        SetTarget(target, target.transform);
+                        SetTarget(_player, _player.transform);
                         //go to look at state to look for them
                         ChangeState(AIState.LookAt);
+                        return;
                     }
                 }
                 break;
@@ -188,6 +193,7 @@ public class  AIController : Controller
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.Rest);
+                    break;
                 }
                 //else if our player is within our sense radius
                 foreach (GameObject target in GameManager.instance.players)
@@ -196,6 +202,7 @@ public class  AIController : Controller
                     {
                         //flee so we don't die
                         ChangeState(AIState.Flee);
+                        return;
                     }
                 }
                 break;
@@ -206,25 +213,27 @@ public class  AIController : Controller
                     Avoidance();
                 }
                 //check for transitions
-                foreach (GameObject target in GameManager.instance.players) 
+                foreach (GameObject _player in GameManager.instance.players) 
                 {
-                    if (CanHear(target))
+                    if (CanHear(_player))
                     {
                         //flee so we don't die
                         ChangeState(AIState.Flee);
+                        return;
                     }
                 }
                 //if our health is greater than or equal to our max health
                 if (pawn.health >= pawn.maxHealth)
                 {
                     //else if our player is within our sense radius
-                    foreach (GameObject target in GameManager.instance.players)
+                    foreach (GameObject _player in GameManager.instance.players)
                     {
                         //if we can't see our player
-                        if (CanHear(target))
+                        if (CanHear(_player))
                         {
                             //go to look at state to look for them
                             ChangeState(AIState.LookAt);
+                            return;
                         }
                     }
                 }
@@ -270,17 +279,17 @@ public class  AIController : Controller
         }
     }
 
-    public bool CanHear(GameObject target)
+    public bool CanHear(GameObject _player)
     {
         // Create local variables and connect them to the pawn to reach the data we need from it.
         // Get data from the target pawn that says how much noise it is making
-        float targetNoise = target.GetComponent<Pawn>().noise;
-        float targetNoiseRange = target.GetComponent<Pawn>().noiseRange;
+        float _playerNoise = target.GetComponent<PlayerPawn>().noise;
+        float _playerNoiseRange = target.GetComponent<PlayerPawn>().noiseRange;
         float hDistance = pawn.hearingDistance;
-        if (targetNoise > 0)
+        if (_playerNoise > 0)
         {
             // If our distance is <= the distance we can hear + the distance the pawn's noise travels
-            if (Vector3.Distance(target.transform.position, tf.position) <= hDistance + targetNoiseRange)
+            if (Vector3.Distance(target.transform.position, tf.position) <= hDistance + _playerNoiseRange)
             {
                 //we can hear them
                 return true;
@@ -316,9 +325,9 @@ public class  AIController : Controller
         float angleToPlayer = Vector3.Angle(agentToPlayerVector, pawn.transform.right);
 
         // if that angle is less than our field of view
-        if (angleToPlayer < pawn.viewRadius)
+        if (angleToPlayer < pawn.fieldOfView)
         {
-            if (Vector3.Distance(pawn.transform.position, player.transform.position) < pawn.fieldOfView / 2)
+            if (Vector3.Distance(pawn.transform.position, player.transform.position) < pawn.viewRadius / 2)
             {
                 // Raycast
                 if (Physics.Raycast(pawn.transform.position, agentToPlayerVector, out RaycastHit hit, pawn.viewRadius, playerLayer))
@@ -339,6 +348,10 @@ public class  AIController : Controller
         return false;
     }
 
+    /// <summary>
+    /// helper function that changes AI States
+    /// </summary>
+    /// <param name="newState"></param>
     public void ChangeState(AIState newState)
     {
         //change state
@@ -347,7 +360,13 @@ public class  AIController : Controller
         stateEnterTime = Time.time;
     }
 
-    public void Chase(GameObject target, Vector3 offset)
+    /// <summary>
+    /// returns TRUE if within range
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="offset"></param>
+    /// <returns></returns>
+    public bool Chase(GameObject target, Vector3 offset)
     {
         //rotates toward target
         motor.RotateTowards(target.transform.position + offset, pawn.turnSpeed);
@@ -355,8 +374,11 @@ public class  AIController : Controller
         //    We chose this distance, because that is how far we move in 1 second,
         //    This means, we are looking for collisions "one second in the future."
         float distanceToTarget = Vector3.Distance(target.transform.position + offset, tf.position);
-        if ((distanceToTarget) > stopDistance)
+        bool withinRange = distanceToTarget < stopDistance;
+
+        if(!withinRange)
         {
+            //keep moving forward
             if (CanMove(pawn.moveSpeed))
             {
                 //move forward
@@ -366,8 +388,10 @@ public class  AIController : Controller
             {
                 //enter obstacle avoidance stage 2
                 avoidanceStage = 1;
-            } 
+            }
         }
+
+        return withinRange;
     }
 
     public void CheckForFlee()
@@ -409,7 +433,9 @@ public class  AIController : Controller
             motor.Move(pawn.moveSpeed);
         }
         //if close to waypoint
-        if (Vector3.SqrMagnitude(GameManager.instance.waypoints[currentWaypoint].position - tf.position) < closeEnough)
+        Vector3 delta = GameManager.instance.waypoints[currentWaypoint].position - tf.position;
+        delta.y = 0;
+        if (delta.sqrMagnitude < closeEnough)
         {
             //and if the waypoint index hasn't been completed
             if (currentWaypoint < GameManager.instance.waypoints.Count - 1)
@@ -434,7 +460,7 @@ public class  AIController : Controller
         pawn.health = Mathf.Min(pawn.health, pawn.maxHealth);
     }
 
-    private void SetTarget(GameObject newTarget, Transform newTargetTf) 
+    public void SetTarget(GameObject newTarget, Transform newTargetTf) 
     {
         target = newTarget;
         targetTf = newTargetTf;

@@ -186,7 +186,7 @@ MonoBehaviour:
   currentWaypoint: 0
   closeEnough: 1
   stopDistance: 5
-  aiState: 4
+  aiState: 5
 --- !u!1001 &3366756532730723892
 PrefabInstance:
   m_ObjectHideFlags: 0

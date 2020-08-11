@@ -8,7 +8,9 @@ public class WaypointListSetter : MonoBehaviour
 
     void Start()
     {
+        //get transform
         tf = GetComponent<Transform>();
+        //add it to the GameManager's list
         GameManager.instance.waypoints.Add(tf);
     }
 }

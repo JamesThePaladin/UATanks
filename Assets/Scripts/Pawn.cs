@@ -85,7 +85,7 @@ public class Pawn : MonoBehaviour
     }
 
     //function for pawn's taking damage
-    public void TakeDamage(float damage, GameObject instigator) 
+    public virtual void TakeDamage(float damage, GameObject instigator) 
     {
         //health is set equal to health decremented by damage
         health -= damage;

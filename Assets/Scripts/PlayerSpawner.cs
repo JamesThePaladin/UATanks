@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    private Transform tf;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.playerSpawners.Add(gameObject);
+        //get transform
+        tf = GetComponent<Transform>();
+        //add it to the game manager's list
+        GameManager.instance.playerSpawners.Add(tf);
     }
 }

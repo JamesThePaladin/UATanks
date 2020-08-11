@@ -19,7 +19,7 @@ public class AIControllerInky : AIController
                 else
                 {
                     //otherwise chase player
-                    Chase(target, Vector3.zero);
+                    Chase(target, Vector3.right);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -49,7 +49,7 @@ public class AIControllerInky : AIController
                 else
                 {
                     //otherwise chase the player
-                    Chase(target, Vector3.zero);
+                    Chase(target, Vector3.right);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
                 }

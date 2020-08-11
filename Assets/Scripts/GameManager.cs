@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     //list for all players in the game
     public GameObject[] players;
     //list for player spawners
-    public List<GameObject> playerSpawners;
+    public List<Transform> playerSpawners;
     
     [Header("PowerUp Stuff")]
     //list to hold Pickup spawners
@@ -57,4 +57,23 @@ public class GameManager : MonoBehaviour
             Debug.Log("Warning: A second game manager was detected and destrtoyed"); // display message in the console to inform of its demise
         }
     }
+
+    //public void LoseLife(PlayerPawn player)
+    //{
+    //    //minus a life
+    //    player.lives--;
+
+    //    //if lives are less than or equal to 0 game over
+    //    if (player.lives <= 0)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    //public void PlayerDeath(PlayerPawn player) 
+    //{
+    //    LoseLife(player);
+    //    //send the player to their last checkpoint
+    //    player.transform.position = playerSpawners[random];
+    //}
 }

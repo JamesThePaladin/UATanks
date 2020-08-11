@@ -10,6 +10,12 @@ public class AIControllerClyde : AIController
         switch (aiState)
         {
             case AIState.Chase:
+                //check to see if we can still see our player
+                if (!CanSee(target))
+                {
+                    ChangeState(AIState.Patrol);
+                    return;
+                }
                 //if avoidance stage is not zero (or if we are avoiding)
                 if (avoidanceStage != 0)
                 {
@@ -19,7 +25,12 @@ public class AIControllerClyde : AIController
                 else
                 {
                     //otherwise chase player
-                    Chase(target, Vector3.zero);
+                    if (Chase(target, Vector3.forward))
+                    {
+                        //within range
+                        ChangeState(AIState.ChaseAndFire);
+                        return;
+                    }
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -27,16 +38,7 @@ public class AIControllerClyde : AIController
                 {
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
-                }
-                //check to see if we can still see our player
-                foreach (GameObject target in GameManager.instance.players)
-                {
-                    //if we can't see our player
-                    if (!CanSee(target.GetComponent<GameObject>()))
-                    {
-                        //go to look at state to look for them
-                        ChangeState(AIState.LookAt);
-                    }
+                    break;
                 }
                 break;
             case AIState.ChaseAndFire:
@@ -48,10 +50,10 @@ public class AIControllerClyde : AIController
                 }
                 else
                 {
-                    //otherwise chase the player
-                    Chase(target, Vector3.zero);
                     //and shoot at them
                     pawn.Shoot(pawn.shotForce);
+                    //otherwise chase the player
+                    Chase(target, Vector3.forward);
                 }
                 //check for transitions
                 //if our health is lower than half our max health
@@ -59,17 +61,17 @@ public class AIControllerClyde : AIController
                 {
                     //check to see if we need to flee
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
-                //check to see if we can still see our player
-                foreach (GameObject target in GameManager.instance.players)
+
+                //if we can't see our player
+                if (!CanSee(target))
                 {
-                    //if we can't see our player
-                    if (!CanSee(target.GetComponent<GameObject>()))
-                    {
-                        //go to look at state to look for them
-                        ChangeState(AIState.LookAt);
-                    }
+                    //go to look at state to look for them
+                    ChangeState(AIState.Patrol);
+                    return;
                 }
+
                 break;
             case AIState.Flee:
                 //if avoidance stage is not zero (or if we are avoiding)
@@ -87,6 +89,7 @@ public class AIControllerClyde : AIController
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
                 break;
             case AIState.LookAt:
@@ -99,13 +102,14 @@ public class AIControllerClyde : AIController
                 {
                     motor.RotateTowards(targetTf.position, pawn.turnSpeed);
                 }
-                foreach (GameObject target in GameManager.instance.players)
+
+                if (CanSee(target))
                 {
-                    if (CanSee(target))
-                    {
-                        ChangeState(AIState.Chase);
-                    }
+                    SetTarget(target, target.transform);
+                    ChangeState(AIState.Chase);
+                    return;
                 }
+
                 break;
             case AIState.Patrol:
                 //if avoidance stage is not zero (or if we are avoiding)
@@ -125,15 +129,18 @@ public class AIControllerClyde : AIController
                 {
                     //change state to check for flee
                     ChangeState(AIState.CheckForFlee);
+                    break;
                 }
                 //else if our player is within our sense radius
-                foreach (GameObject target in GameManager.instance.players)
+                foreach (GameObject _player in GameManager.instance.players)
                 {
                     //if we can't see our player
-                    if (CanHear(target.GetComponent<GameObject>()))
+                    if (CanHear(_player))
                     {
+                        SetTarget(_player, _player.transform);
                         //go to look at state to look for them
                         ChangeState(AIState.LookAt);
+                        return;
                     }
                 }
                 break;
@@ -153,6 +160,7 @@ public class AIControllerClyde : AIController
                 if (Time.time >= stateEnterTime + stateExitTime)
                 {
                     ChangeState(AIState.Rest);
+                    break;
                 }
                 //else if our player is within our sense radius
                 foreach (GameObject target in GameManager.instance.players)
@@ -161,6 +169,7 @@ public class AIControllerClyde : AIController
                     {
                         //flee so we don't die
                         ChangeState(AIState.Flee);
+                        return;
                     }
                 }
                 break;
@@ -171,26 +180,27 @@ public class AIControllerClyde : AIController
                     Avoidance();
                 }
                 //check for transitions
-                foreach (GameObject target in GameManager.instance.players)
+                foreach (GameObject _player in GameManager.instance.players)
                 {
-                    if (CanHear(target))
+                    if (CanHear(_player))
                     {
                         //flee so we don't die
                         ChangeState(AIState.Flee);
+                        return;
                     }
                 }
                 //if our health is greater than or equal to our max health
                 if (pawn.health >= pawn.maxHealth)
                 {
                     //else if our player is within our sense radius
-                    //else if our player is within our sense radius
-                    foreach (GameObject target in GameManager.instance.players)
+                    foreach (GameObject _player in GameManager.instance.players)
                     {
                         //if we can't see our player
-                        if (CanHear(target.GetComponent<GameObject>()))
+                        if (CanHear(_player))
                         {
                             //go to look at state to look for them
                             ChangeState(AIState.LookAt);
+                            return;
                         }
                     }
                 }
