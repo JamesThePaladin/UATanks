@@ -220,11 +220,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2007625824981281328, guid: fc5461301a278e44a905b68d942aa704,
-        type: 3}
-      propertyPath: health
-      value: 50
+    - target: {fileID: 1024865881, guid: fc5461301a278e44a905b68d942aa704, type: 3}
+      propertyPath: shotForce
+      value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 1714168480, guid: fc5461301a278e44a905b68d942aa704, type: 3}
+      propertyPath: pawn
+      value: 
+      objectReference: {fileID: 1024865881}
     - target: {fileID: 2007625824981281329, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -280,6 +283,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2007625824981281331, guid: fc5461301a278e44a905b68d942aa704,
+        type: 3}
+      propertyPath: pawn
+      value: 
+      objectReference: {fileID: 1024865881}
     - target: {fileID: 2007625824981281341, guid: fc5461301a278e44a905b68d942aa704,
         type: 3}
       propertyPath: m_Name
@@ -412,12 +420,12 @@ PrefabInstance:
     - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
         type: 3}
       propertyPath: maxPowerUps
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
         type: 3}
       propertyPath: spawnDelay
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
         type: 3}
@@ -461,41 +469,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 664790985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1024865881
+--- !u!114 &1024865881 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1024865881, guid: fc5461301a278e44a905b68d942aa704,
+    type: 3}
+  m_PrefabInstance: {fileID: 664790985}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024865880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4a82351e26d7444afd75cb79db3c20, type: 3}
+  m_Script: {fileID: 11500000, guid: c0cb2d2d895068045813565dca1d7287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powMan: {fileID: 1024865882}
-  cheatPow:
-    speedModifier: 1.5
-    healthModifier: 2
-    maxHealthModifier: 3
-    fireRateModifier: 1
-    damageModifier: 0
-    isPermanent: 0
-    duration: 8
-    durationReset: 8
---- !u!114 &1024865882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024865880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44f283f16b43844c87af83105e67cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerups: []
 --- !u!1 &1620239640
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +649,26 @@ PrefabInstance:
         type: 3}
       propertyPath: isMapOfTheDay
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090993280639206175, guid: 4cd27079c73fb35479493a64428a35df,
+        type: 3}
+      propertyPath: isRandomMap
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090993280639206175, guid: 4cd27079c73fb35479493a64428a35df,
+        type: 3}
+      propertyPath: presetSeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090993280639206175, guid: 4cd27079c73fb35479493a64428a35df,
+        type: 3}
+      propertyPath: roomWidth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090993280639206175, guid: 4cd27079c73fb35479493a64428a35df,
+        type: 3}
+      propertyPath: roomHeight
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd27079c73fb35479493a64428a35df, type: 3}

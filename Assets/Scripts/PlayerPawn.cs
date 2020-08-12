@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerPawn : Pawn
 {
     //player lives
+    [Header("Player Lives")]
     public int lives;
 
     //player damage so we dont destroy our player's score.
@@ -18,7 +19,7 @@ public class PlayerPawn : Pawn
             //give the instigator points
             instigator.SendMessage("ScorePoints", points);
             //tell the game manager you died
-            //TODO: GameManager function for player death
+            GameManager.instance.PlayerDeath(gameObject);
         }
     }
 }

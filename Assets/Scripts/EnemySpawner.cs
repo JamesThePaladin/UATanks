@@ -8,11 +8,11 @@ public class EnemySpawner : MonoBehaviour
     private float nextSpawnTime;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         tf = GetComponent<Transform>();
         GameManager.instance.enemySpawners.Add(gameObject);
-        nextSpawnTime = Time.time + GameManager.instance.spawnDelay;
+        nextSpawnTime = Time.time + GameManager.instance.enemySpawnDelay;
     }
 
     void Update()

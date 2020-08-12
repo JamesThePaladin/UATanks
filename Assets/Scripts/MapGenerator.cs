@@ -8,11 +8,12 @@ public class MapGenerator : MonoBehaviour
     [Header("Map Rooms")]
     public int rows;
     public int cols;
-    private float roomWidth = 50.0f;
-    private float roomHeight = 50.0f;
+    public float roomWidth = 50.0f;
+    public float roomHeight = 50.0f;
     public GameObject[] roomPrefabs;
 
     [Header("Map Seed")]
+    public int presetSeed = 0;
     public int mapSeed;
     public int mapOfDaySeed;
     public bool isMapOfTheDay = false;
@@ -21,17 +22,12 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //set our random map seed 
         mapSeed = (DateToInt(DateTime.Now));
         //set our map of the day seed
         mapOfDaySeed = DateToInt(DateTime.Now.Date);
         //Generate Map
         GenerateMap();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     //generates the game map
@@ -47,6 +43,11 @@ public class MapGenerator : MonoBehaviour
         {
             //Otherwise, initialize the random generator with our random seed
             UnityEngine.Random.InitState(mapSeed);
+        }
+        else 
+        {
+            //if neither of the above, use a preset
+            UnityEngine.Random.InitState(presetSeed);
         }
 
         //clear out the grid - "which column" is our X, "which row" is our Y
@@ -109,7 +110,7 @@ public class MapGenerator : MonoBehaviour
                     tempRoom.doorWest.SetActive(false);
                 }
                 //save it to grid array
-                GameManager.instance.grid[i, i] = tempRoom;
+                GameManager.instance.grid[i, j] = tempRoom;
             }
         }
     }

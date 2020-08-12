@@ -58,22 +58,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void LoseLife(PlayerPawn player)
-    //{
-    //    //minus a life
-    //    player.lives--;
+    /// <summary>
+    /// Decrements the number of lives a player has. if lives equal zero causes game over.
+    /// </summary>
+    /// <param name="_player"></param>
+    public void LoseLife(GameObject _player)
+    {
+        //get player lives
+        int lives = _player.GetComponent<PlayerPawn>().lives;
+        //minus a life
+        lives--;
 
-    //    //if lives are less than or equal to 0 game over
-    //    if (player.lives <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+        //if lives are less than or equal to 0 game over
+        if (lives <= 0)
+        {
+            Application.Quit();
+        }
+    }
 
-    //public void PlayerDeath(PlayerPawn player) 
-    //{
-    //    LoseLife(player);
-    //    //send the player to their last checkpoint
-    //    player.transform.position = playerSpawners[random];
-    //}
+    /// <summary>
+    /// calls LoseLife();, then sets health = max health, then moves player to random player spawner.
+    /// </summary>
+    /// <param name="_player"></param>
+    public void PlayerDeath(GameObject _player)
+    {
+        //lose a life
+        LoseLife(_player);
+        //reset health
+        ResetHealth(_player);
+        //pick a random spawn point from the list
+        int random = Random.Range(0, playerSpawners.Count -1);
+        //send the player to their last checkpoint
+        _player.transform.position = playerSpawners[random].transform.position;
+    }
+
+    /// <summary>
+    /// sets player health to max after death
+    /// </summary>
+    /// <param name="_player"></param>
+    public void ResetHealth(GameObject _player) 
+    {
+        //get player health and max health
+        float health = _player.GetComponent<PlayerPawn>().health;
+        float maxHealth = _player.GetComponent<PlayerPawn>().maxHealth;
+        //set health equal to max health
+        health = maxHealth;
+    }
 }

@@ -113,7 +113,7 @@ MonoBehaviour:
     maxHealthModifier: 1
     fireRateModifier: 0
     damageModifier: 2
-    isPermanent: 0
+    isPermanent: 1
     duration: 6
     durationReset: 6
   feedback: {fileID: 8300000, guid: b11f522f3326fc442847b54c09da8043, type: 3}

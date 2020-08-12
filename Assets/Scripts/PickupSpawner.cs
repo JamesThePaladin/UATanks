@@ -13,7 +13,7 @@ public class PickupSpawner : MonoBehaviour
     public float maxZ = 10f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         tf = gameObject.GetComponent<Transform>();
         GameManager.instance.pickupSpawners.Add(tf);
@@ -34,7 +34,7 @@ public class PickupSpawner : MonoBehaviour
             //and if enough time has passed for the next spawn time
             if (Time.time > nextSpawnTime)
             {
-                int random = Random.Range(0, GameManager.instance.pickupPrefabs.Count);
+                int random = Random.Range(0, GameManager.instance.pickupPrefabs.Count - 1);
                 GameManager.instance.powerup = Instantiate(GameManager.instance.pickupPrefabs[random], tf.position, tf.rotation);
                 nextSpawnTime = Time.time + GameManager.instance.spawnDelay;
                 GameManager.instance.currentPowerUps++;

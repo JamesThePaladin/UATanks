@@ -283,8 +283,8 @@ public class  AIController : Controller
     {
         // Create local variables and connect them to the pawn to reach the data we need from it.
         // Get data from the target pawn that says how much noise it is making
-        float _playerNoise = target.GetComponent<PlayerPawn>().noise;
-        float _playerNoiseRange = target.GetComponent<PlayerPawn>().noiseRange;
+        float _playerNoise = _player.GetComponent<PlayerPawn>().noise;
+        float _playerNoiseRange = _player.GetComponent<PlayerPawn>().noiseRange;
         float hDistance = pawn.hearingDistance;
         if (_playerNoise > 0)
         {
@@ -423,6 +423,11 @@ public class  AIController : Controller
 
     public void Patrol()
     {
+        //set target equal to current waypoint
+        target = GameManager.instance.waypoints[currentWaypoint].transform.gameObject;
+        //set target transform equal to current waypoint transform
+        targetTf = GameManager.instance.waypoints[currentWaypoint].transform;
+
         if (motor.RotateTowards(GameManager.instance.waypoints[currentWaypoint].position, pawn.turnSpeed))
         {
             //Do nothing!

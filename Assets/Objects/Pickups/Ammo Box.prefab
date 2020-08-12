@@ -99,6 +99,7 @@ MonoBehaviour:
     healthModifier: 1
     maxHealthModifier: 1
     fireRateModifier: 1
+    damageModifier: 1
     isPermanent: 0
     duration: 10
     durationReset: 10
