@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Ground
   - PickupSpawner
+  - PauseMenu
+  - Menus
   layers:
   - Default
   - TransparentFX

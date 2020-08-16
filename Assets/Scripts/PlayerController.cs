@@ -11,7 +11,7 @@ public class PlayerController : Controller
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,10 +41,6 @@ public class PlayerController : Controller
                 {
                     pawn.Shoot(pawn.shotForce);
                 }
-                if (Input.GetKeyDown(KeyCode.Escape)) 
-                {
-                    Application.Quit();
-                }
                 break;
             case InputScheme.arrowKeys:
                 if (Input.GetKey(KeyCode.UpArrow))
@@ -66,10 +62,6 @@ public class PlayerController : Controller
                 if (Input.GetKey(KeyCode.RightAlt))
                 {
                     pawn.Shoot(pawn.shotForce);
-                }
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Application.Quit();
                 }
                 break;
         }
