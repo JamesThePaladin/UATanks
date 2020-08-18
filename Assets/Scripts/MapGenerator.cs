@@ -16,8 +16,6 @@ public class MapGenerator : MonoBehaviour
     public int presetSeed = 0;
     public int mapSeed;
     public int mapOfDaySeed;
-    public bool isMapOfTheDay = false;
-    public bool isRandomMap = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,12 +32,12 @@ public class MapGenerator : MonoBehaviour
     public void GenerateMap() 
     {
         //if the player wants the map of the day
-        if (isMapOfTheDay)
+        if (GameManager.instance.isMapOfTheDay)
         {
             //initialize the generator with our map of the day seed
             UnityEngine.Random.InitState(mapOfDaySeed);
         }
-        else if (isRandomMap)
+        else if (GameManager.instance.isRandomMap)
         {
             //Otherwise, initialize the random generator with our random seed
             UnityEngine.Random.InitState(mapSeed);

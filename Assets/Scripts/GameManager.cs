@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [Header("Map Stuff")]
     //map tile grid array
     public Room[,] grid;
+    //bool for map of the day seed
+    public bool isMapOfTheDay = false;
+    //bool for random map seed
+    public bool isRandomMap = true;
 
     [Header("Enemy Stuff")]
     //list to hold all enemies in game
@@ -42,6 +46,10 @@ public class GameManager : MonoBehaviour
     public float spawnDelay = 10.0f;
     public float currentPowerUps;
     public float maxPowerUps = 4.0f;
+
+    [Header("Sound Stuff")]
+    private int sfxVolume;
+    private int musicVolume; 
 
     // Start is called before the first frame update
     void Awake()

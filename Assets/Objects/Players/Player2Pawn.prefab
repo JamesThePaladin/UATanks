@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1940461835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940461836}
+  - component: {fileID: 1940461839}
+  - component: {fileID: 1940461838}
+  - component: {fileID: 1940461837}
+  m_Layer: 0
+  m_Name: PlayerCamera
+  m_TagString: PlayerCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1940461836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940461835}
+  m_LocalRotation: {x: 0.03505566, y: -0, z: -0, w: 0.9993854}
+  m_LocalPosition: {x: 0, y: 1.97, z: -9.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5670304958809615218}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 4.018, y: 0, z: 0}
+--- !u!20 &1940461839
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940461835}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 0.5
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.4
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &1940461838
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940461835}
+  m_Enabled: 1
+--- !u!114 &1940461837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940461835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35827533868eca4084e25fb1f1aa410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6333277396104699075}
 --- !u!1 &878064620100291408
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,10 +508,10 @@ GameObject:
   - component: {fileID: 8749189005076305913}
   - component: {fileID: 8749189005076305915}
   - component: {fileID: 8749189005076305912}
-  - component: {fileID: 8749189005076305914}
   - component: {fileID: 2293088839674757514}
   - component: {fileID: 3862557874655977042}
   - component: {fileID: -1023709062257491476}
+  - component: {fileID: -6330994951514184617}
   m_Layer: 0
   m_Name: Player2Pawn
   m_TagString: Enemy
@@ -429,7 +526,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6333277396104699075}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 44.77, y: 0, z: 46.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -439,6 +536,7 @@ Transform:
   - {fileID: 5372008294793757618}
   - {fileID: 7157725201736406327}
   - {fileID: 8749189005715192975}
+  - {fileID: 1940461836}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -533,39 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 5670304958809615218}
-  pawn: {fileID: 8749189005076305914}
---- !u!114 &8749189005076305914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6333277396104699075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6be440d8b1b89489f8dc61ab911436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shotTimerDelay: 2
-  shellTimeOut: 3
-  coolDownTimer: 0
-  health: 100
-  maxHealth: 100
-  moveSpeed: 10
-  turnSpeed: 90
-  shotForce: 1000
-  damage: 10
-  points: 100
-  score: 0
-  noise: 0
-  noiseRange: 10
-  isMakingNoise: 0
-  closeEnough: 1
-  viewRadius: 90
-  fieldOfView: 45
-  hearingDistance: 10
+  pawn: {fileID: 0}
 --- !u!65 &2293088839674757514
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -592,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 8749189005076305912}
-  pawn: {fileID: 8749189005076305914}
+  pawn: {fileID: -6330994951514184617}
   input: 1
 --- !u!114 &-1023709062257491476
 MonoBehaviour:
@@ -607,6 +673,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerups: []
+--- !u!114 &-6330994951514184617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333277396104699075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cb2d2d895068045813565dca1d7287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shell: {fileID: 5845955624572756043, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
+  shellRb: {fileID: 1595236628235646013, guid: 72c2dded2d35aa04a85f0f56d4da1cb5, type: 3}
+  shotTimerDelay: 1
+  shellTimeOut: 3
+  coolDownTimer: 3
+  health: 100
+  maxHealth: 100
+  moveSpeed: 10
+  turnSpeed: 180
+  shotForce: 200
+  damage: 25
+  points: 150
+  score: 0
+  noise: 1
+  noiseRange: 10
+  isMakingNoise: 0
+  closeEnough: 0
+  viewRadius: 10
+  fieldOfView: 180
+  hearingDistance: 10
+  lives: 3
 --- !u!1 &7550101356138675741
 GameObject:
   m_ObjectHideFlags: 0
