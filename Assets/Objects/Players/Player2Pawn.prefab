@@ -685,7 +685,7 @@ MonoBehaviour:
   maxHealth: 100
   moveSpeed: 10
   turnSpeed: 180
-  shotForce: 200
+  shotForce: 1000
   damage: 25
   points: 150
   score: 0

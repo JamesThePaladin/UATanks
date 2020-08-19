@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     //variable that holds this instance of the GameManager
     public static GameManager instance;
 
+    [HideInInspector]
+    public bool isGameStart;
+
     [Header("Map Stuff")]
     //map tile grid array
     public Room[,] grid;
@@ -43,7 +46,7 @@ public class GameManager : MonoBehaviour
     //list for player high scores
     public List<ScoreData> highScores;
     //bool for if the game is multiplayer
-    public bool isMultiplayer;
+    public bool isMultiplayer = false;
     
     [Header("PowerUp Stuff")]
     //list to hold Pickup spawners
@@ -75,11 +78,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Update()
     {
-        GameStart();
+        if (isGameStart) 
+        {
+            if (playerSpawners == null)
+            {
+                return; 
+            }
+            else 
+            {
+                GameStart();
+                isGameStart = false;
+            }
+        }
     }
-
     /// <summary>
     /// handles game over once all players have 0 lives
     /// </summary>
@@ -117,10 +130,10 @@ public class GameManager : MonoBehaviour
             //spawn player 2
             GameObject player2 = Instantiate(playerPrefabs[1], playerSpawners[1].position, playerSpawners[1].rotation);
         }
-        else 
+        else
         {
             GameObject player1 = Instantiate(playerPrefabs[0], playerSpawners[0].position, playerSpawners[0].rotation);
-        }
+        } 
     }
 
     /// <summary>

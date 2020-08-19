@@ -2665,21 +2665,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159907, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: players.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: playerPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
         type: 3}
       propertyPath: enemies.Array.data[0]
@@ -2700,48 +2685,6 @@ PrefabInstance:
       propertyPath: enemies.Array.data[3]
       value: 
       objectReference: {fileID: 1153093373883572498}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: players.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: players.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: maxEnemies
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: enemySpawnDelay
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: currentEnemies
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: playerPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 2007625824981281341, guid: fc5461301a278e44a905b68d942aa704,
-        type: 3}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: playerPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6333277396104699075, guid: fd1d119ea9eb210448b1d94893ee8d7b,
-        type: 3}
-    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
-        type: 3}
-      propertyPath: isMultiplayer
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7acc9013595dfbc41a1212429311d179, type: 3}
 --- !u!4 &4024992501855894410 stripped

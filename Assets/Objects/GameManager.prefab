@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3671700348797159907}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.979713, y: 2.285375, z: 13.421819}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -43,16 +43,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f84185e2cf7c74396e4fb5e7217cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMapOfTheDay: 0
+  isRandomMap: 1
   enemies:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
+  enemyPrefabs: []
+  enemySpawners: []
+  waypoints: []
+  currentEnemies: 4
+  maxEnemies: 4
+  enemySpawnDelay: 10
+  players: []
+  playerPrefabs:
+  - {fileID: 2007625824981281341, guid: fc5461301a278e44a905b68d942aa704, type: 3}
+  - {fileID: 6333277396104699075, guid: fd1d119ea9eb210448b1d94893ee8d7b, type: 3}
+  playerSpawners: []
+  highScores: []
+  isMultiplayer: 1
+  pickupSpawners: []
   powerup: {fileID: 0}
-  pickupSpawner: {fileID: 0}
   pickupPrefabs:
   - {fileID: 5116990117598249705, guid: 8891d2825b7334a4c96af03a3224d414, type: 3}
   - {fileID: 1187926707081733438, guid: fe92c6c5f2a790242a938cba8ce2e51b, type: 3}

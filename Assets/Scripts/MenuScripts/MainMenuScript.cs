@@ -10,13 +10,17 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlaySinglePlayer()
     {
-        //load the scene after the Main Menu, which is level 1
+        GameManager.instance.isMultiplayer = false;
+        GameManager.instance.isGameStart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.instance.GameStart();
     }
 
     public void PlayMultiplayer() 
     {
-        //TODO: Make this work
+        GameManager.instance.isGameStart = true;
+        GameManager.instance.isMultiplayer = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OpenPlayerSelect() 
