@@ -11,6 +11,8 @@ TagManager:
   - PauseMenu
   - Menus
   - PlayerCamera
+  - Player1Camera
+  - Player2Camera
   layers:
   - Default
   - TransparentFX

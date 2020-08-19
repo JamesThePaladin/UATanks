@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -34,9 +35,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Stuff")]
     //list for all players in the game
-    public GameObject[] players;
+    public List<GameObject> players;
+    //list for player prefabs
+    public List<GameObject> playerPrefabs;
     //list for player spawners
     public List<Transform> playerSpawners;
+    //list for player high scores
+    public List<ScoreData> highScores;
+    //bool for if the game is multiplayer
+    public bool isMultiplayer;
     
     [Header("PowerUp Stuff")]
     //list to hold Pickup spawners
@@ -51,6 +58,8 @@ public class GameManager : MonoBehaviour
     private int sfxVolume;
     private int musicVolume; 
 
+    //TODO figure out how to instantiate players at the start.
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -63,6 +72,54 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject); // delete the new game manager attempting to store itself, there can only be one.
             Debug.Log("Warning: A second game manager was detected and destrtoyed"); // display message in the console to inform of its demise
+        }
+    }
+
+    void Start()
+    {
+        GameStart();
+    }
+
+    /// <summary>
+    /// handles game over once all players have 0 lives
+    /// </summary>
+    public void GameOver() 
+    {
+        //TODO: make game over scene
+        foreach (GameObject _player in players)
+        {
+            ScoreData _score = new ScoreData();
+            _score.playerName = "player_" + players[0];
+            _score.score = _player.GetComponent<PlayerPawn>().score;
+            highScores.Add(_score);
+        }
+
+        SaveHighScores();
+    }
+
+    /// <summary>
+    /// handles multiplayer at the start of the game
+    /// </summary>
+    public void GameStart() 
+    {
+        if (isMultiplayer)
+        {
+            //spawn player 1
+            GameObject player1 = Instantiate(playerPrefabs[0], playerSpawners[0].position, playerSpawners[0].rotation);
+            //get player 1's camera
+            Camera player1Camera = player1.GetComponentInChildren<Camera>();
+            //set create variables for rect values
+            float Ydelta = 0.5f;
+            float Hdelta = 0.5f;
+            //set rect values
+            player1Camera.rect = new Rect(0, Ydelta, 1, Hdelta);
+
+            //spawn player 2
+            GameObject player2 = Instantiate(playerPrefabs[1], playerSpawners[1].position, playerSpawners[1].rotation);
+        }
+        else 
+        {
+            GameObject player1 = Instantiate(playerPrefabs[0], playerSpawners[0].position, playerSpawners[0].rotation);
         }
     }
 
@@ -80,7 +137,7 @@ public class GameManager : MonoBehaviour
         //if lives are less than or equal to 0 game over
         if (lives <= 0)
         {
-            Application.Quit();
+            GameOver();
         }
     }
 
@@ -111,5 +168,18 @@ public class GameManager : MonoBehaviour
         float maxHealth = _player.GetComponent<PlayerPawn>().maxHealth;
         //set health equal to max health
         health = maxHealth;
+    }
+
+    public void SaveHighScores() 
+    {
+        highScores.Sort();
+        highScores.Reverse();
+        highScores.GetRange(0, 3);
+
+        foreach (ScoreData _score in highScores) 
+        {
+            int highScore = _score.score;
+            PlayerPrefs.SetInt("High Score", highScore);
+        }
     }
 }

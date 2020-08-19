@@ -7,7 +7,7 @@ public class PlayerSpawner : MonoBehaviour
     private Transform tf;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //get transform
         tf = GetComponent<Transform>();

@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ScoreData : IComparable<ScoreData>
 {
-    public float score;
+    public int score;
     public string playerName;
 
     public int CompareTo (ScoreData other) 
@@ -28,6 +28,4 @@ public class ScoreData : IComparable<ScoreData>
 
         return 0;
     }
-
-    //TODO: Figure out how to use this cause idk
 }
