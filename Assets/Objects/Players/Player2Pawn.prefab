@@ -691,7 +691,7 @@ MonoBehaviour:
   score: 0
   noise: 1
   noiseRange: 10
-  isMakingNoise: 0
+  isMakingNoise: 1
   closeEnough: 0
   viewRadius: 10
   fieldOfView: 180

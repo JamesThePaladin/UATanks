@@ -13,6 +13,10 @@ TagManager:
   - PlayerCamera
   - Player1Camera
   - Player2Camera
+  - Player1UICamera
+  - Player2UICamera
+  - Player1UI
+  - PLayer2UI
   layers:
   - Default
   - TransparentFX

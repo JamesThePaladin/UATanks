@@ -2074,7 +2074,7 @@ PrefabInstance:
     - target: {fileID: 884784287316876924, guid: 92ad809dfc622534a945bf0cf6390e09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43399996
+      value: 0.876
       objectReference: {fileID: 0}
     - target: {fileID: 884784287316876924, guid: 92ad809dfc622534a945bf0cf6390e09,
         type: 3}
@@ -2605,6 +2605,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Waypoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579447145205029458, guid: c74905b4f5f792a4f8cb0b21d495e515,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579447145527630937, guid: c74905b4f5f792a4f8cb0b21d495e515,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579447145828417813, guid: c74905b4f5f792a4f8cb0b21d495e515,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c74905b4f5f792a4f8cb0b21d495e515, type: 3}
