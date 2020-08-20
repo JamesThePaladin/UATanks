@@ -65,6 +65,7 @@ public class Pawn : MonoBehaviour
     {
         if (coolDownTimer <= 0)
         {
+            //TODO: Add fire sounds
             //create a vector 3 for shot direction that is equal to our firing zone's forward vector multiplied by shotForce
             Vector3 shotDir = firingZone.forward * shotForce;
             //instantiate a shell at the firing zone's position and rotation, save it in shellInstance.

@@ -10,6 +10,7 @@ public class ShellScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //TODO: Add hit sounds here
         //check if collider belongs to player or enemy
         if (other.CompareTag("Player") || (other.CompareTag("Enemy")))
         {
