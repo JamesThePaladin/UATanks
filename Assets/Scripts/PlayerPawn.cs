@@ -29,4 +29,9 @@ public class PlayerPawn : Pawn
             GameManager.instance.PlayerDeath(gameObject);
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.players.Remove(gameObject);
+    }
 }

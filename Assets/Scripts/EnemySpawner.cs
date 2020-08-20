@@ -39,4 +39,9 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.enemySpawners.Remove(gameObject);
+    }
 }

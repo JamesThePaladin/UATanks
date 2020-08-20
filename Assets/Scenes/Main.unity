@@ -437,7 +437,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -688,6 +688,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxEnemies
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671700348797159909, guid: 7acc9013595dfbc41a1212429311d179,
+        type: 3}
+      propertyPath: maxPowerUps
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7acc9013595dfbc41a1212429311d179, type: 3}

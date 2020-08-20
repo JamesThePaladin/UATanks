@@ -14,4 +14,9 @@ public class PlayerSpawner : MonoBehaviour
         //add it to the game manager's list
         GameManager.instance.playerSpawners.Add(tf);
     }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.playerSpawners.Remove(tf);
+    }
 }

@@ -8,5 +8,6 @@ public class EnemyPawn : MonoBehaviour
     {
         //TODO: add death sounds
         GameManager.instance.currentEnemies--;
+        GameManager.instance.enemies.Remove(gameObject);
     }
 }
