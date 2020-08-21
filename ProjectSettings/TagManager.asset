@@ -17,6 +17,10 @@ TagManager:
   - Player2UICamera
   - Player1UI
   - PLayer2UI
+  - Music
+  - MusicSlider
+  - MasterSlider
+  - sfxSlider
   layers:
   - Default
   - TransparentFX

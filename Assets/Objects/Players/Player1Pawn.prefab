@@ -248,6 +248,7 @@ MonoBehaviour:
   fieldOfView: 180
   hearingDistance: 10
   lives: 3
+  deathSound: {fileID: 1138633928164315949}
 --- !u!1 &2970509334632370829
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,8 +352,7 @@ AudioSource:
   m_GameObject: {fileID: 8601251399499482543}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 91c559cb181d2b840940bfc2af68af31,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6d1dc65927c942445a21233cf760dbdf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -606,8 +606,7 @@ AudioSource:
   m_GameObject: {fileID: 8749160854030484105}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 91c559cb181d2b840940bfc2af68af31,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 796ee0648892212498385b3c28c26994, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

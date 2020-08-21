@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPawn : MonoBehaviour
+public class EnemyPawn : Pawn
 {
+    public AudioSource deathSound;
+
     private void OnDestroy()
     {
-        //TODO: add death sounds
+        deathSound.Play();
         GameManager.instance.currentEnemies--;
         GameManager.instance.enemies.Remove(gameObject);
     }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -58,10 +57,19 @@ public class GameManager : MonoBehaviour
     public float maxPowerUps = 4.0f;
 
     [Header("Sound Stuff")]
-    private int sfxVolume;
-    private int musicVolume; 
-
-    //TODO figure out how to instantiate players at the start.
+    public AudioSource music;
+    public AudioListener master;
+    public List<AudioSource> sfx;
+    public Slider masterSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    [HideInInspector]
+    public float masterVolume;
+    [HideInInspector]
+    public float sfxVolume;
+    [HideInInspector]
+    public float musicVolume; 
+    //TODO: sfx and music volume
 
     // Start is called before the first frame update
     void Awake()
@@ -78,6 +86,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        master = FindObjectOfType<AudioListener>();
+        music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
+        masterSlider = GameObject.FindWithTag("MasterSlider").GetComponent<Slider>();
+        musicSlider = GameObject.FindWithTag("MusicSlider").GetComponent<Slider>();
+        sfxSlider = GameObject.FindWithTag("sfxSlider").GetComponent<Slider>();
+        LoadOptions();
+    }
+
     void Update()
     {
         if (isGameStart) 
@@ -92,6 +110,7 @@ public class GameManager : MonoBehaviour
                 isGameStart = false;
             }
         }
+
     }
     /// <summary>
     /// handles game over once all players have 0 lives
@@ -102,7 +121,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject _player in players)
         {
             ScoreData _score = new ScoreData();
-            _score.playerName = "player_" + players[0];
+            _score.playerName = "James";
             _score.score = _player.GetComponent<PlayerPawn>().score;
             highScores.Add(_score);
         }
@@ -136,6 +155,25 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+    public void LoadOptions() 
+    {
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", masterVolume);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
+        
+    }
+    public void LoadOptionsGUI() 
+    {
+        masterSlider.value = PlayerPrefs.GetFloat("MasterSliderValue", masterSlider.value);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicSliderValue", musicSlider.value);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXSliderValue", sfxSlider.value);
+    }
+
+    public void LoadHighScores() 
+    {
+        
+    }
+
     /// <summary>
     /// Decrements the number of lives a player has. if lives equal zero causes game over.
     /// </summary>
@@ -160,6 +198,10 @@ public class GameManager : MonoBehaviour
     /// <param name="_player"></param>
     public void PlayerDeath(GameObject _player)
     {
+        //get death sound
+        AudioSource deathSound = _player.GetComponent<PlayerPawn>().deathSound;
+        //play death sound
+        deathSound.Play();
         //lose a life
         LoseLife(_player);
         //reset health
@@ -192,7 +234,52 @@ public class GameManager : MonoBehaviour
         foreach (ScoreData _score in highScores) 
         {
             int highScore = _score.score;
-            PlayerPrefs.SetInt("High Score", highScore);
+            PlayerPrefs.SetInt("HighScore", highScore);
+        }
+    }
+
+    /// <summary>
+    /// Saves player option menu preferences, float values only.
+    /// Does not save boolen values.
+    /// </summary>
+    public void SaveOptions()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        PlayerPrefs.SetFloat("MasterSliderValue", masterSlider.value);
+        PlayerPrefs.SetFloat("MusicSliderValue", musicSlider.value);
+        PlayerPrefs.SetFloat("SFXSliderValue", sfxSlider.value);
+
+    }
+
+    public void CheckForVolumeChange() 
+    {
+        masterVolume = masterSlider.value;
+        sfxVolume = sfxSlider.value;
+        musicVolume = musicSlider.value;
+    }
+
+    public void CheckForSoundObjects() 
+    {
+        if (masterSlider == null)
+        {
+            masterSlider = GameObject.FindWithTag("MasterSlider").GetComponent<Slider>();
+        }
+
+        if (musicSlider == null)
+        {
+            musicSlider = GameObject.FindWithTag("MusicSlider").GetComponent<Slider>();
+        }
+
+        if (sfxSlider == null)
+        {
+            sfxSlider = GameObject.FindWithTag("sfxSlider").GetComponent<Slider>();
+        }
+
+        if (music == null)
+        {
+            music = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         }
     }
 }

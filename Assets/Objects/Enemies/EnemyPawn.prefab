@@ -74,10 +74,10 @@ GameObject:
   - component: {fileID: 2864144795255202841}
   - component: {fileID: 1307388088}
   - component: {fileID: 1307388089}
-  - component: {fileID: 1307388087}
   - component: {fileID: 1307388092}
   - component: {fileID: 7287973888921848}
   - component: {fileID: 3904021660493573371}
+  - component: {fileID: 710853202198356468}
   m_Layer: 9
   m_Name: EnemyPawn
   m_TagString: Enemy
@@ -128,38 +128,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.87, y: 1, z: 2.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1307388087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4931911118887713618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6be440d8b1b89489f8dc61ab911436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shotTimerDelay: 1
-  shellTimeOut: 3
-  coolDownTimer: 0
-  health: 150
-  maxHealth: 150
-  moveSpeed: 15
-  turnSpeed: 180
-  shotForce: 1000
-  damage: 20
-  points: 200
-  score: 0
-  noise: 0
-  noiseRange: 10
-  isMakingNoise: 0
-  closeEnough: 1
-  viewRadius: 90
-  fieldOfView: 180
-  hearingDistance: 10
 --- !u!143 &1307388092
 CharacterController:
   m_ObjectHideFlags: 0
@@ -191,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 2864144795255202841}
-  pawn: {fileID: 1307388087}
+  pawn: {fileID: 0}
 --- !u!114 &3904021660493573371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 7287973888921848}
-  pawn: {fileID: 1307388087}
+  pawn: {fileID: 710853202198356468}
   target: {fileID: 0}
   targetTf: {fileID: 0}
   playerLayer:
@@ -221,6 +189,39 @@ MonoBehaviour:
   closeEnough: 1
   stopDistance: 5
   aiState: 5
+--- !u!114 &710853202198356468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931911118887713618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2777f27ab996e141baeafeab1b748ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
+  shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
+  shotTimerDelay: 1
+  shellTimeOut: 3
+  coolDownTimer: 0
+  health: 150
+  maxHealth: 150
+  moveSpeed: 15
+  turnSpeed: 180
+  shotForce: 1000
+  damage: 20
+  points: 200
+  score: 0
+  noise: 0
+  noiseRange: 10
+  isMakingNoise: 0
+  closeEnough: 1
+  viewRadius: 90
+  fieldOfView: 180
+  hearingDistance: 10
+  deathSound: {fileID: 0}
 --- !u!1 &7378813160827479463
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +390,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9e1605e5ccb4c5a409229545953752ca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ae824d69817d5a941bbdd3e8cd746c48, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

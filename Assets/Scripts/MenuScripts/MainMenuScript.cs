@@ -37,12 +37,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void OpenOptions()
     {
+        GameManager.instance.LoadOptionsGUI();
         optionsMenuUI.SetActive(true);
         mainMenuUI.SetActive(false);
     }
 
     public void CloseOptions() 
     {
+        GameManager.instance.SaveOptions();
         mainMenuUI.SetActive(true);
         optionsMenuUI.SetActive(false);
     }
@@ -51,6 +53,7 @@ public class MainMenuScript : MonoBehaviour
     //for quit button on start menu, closes the app
     public void QuitGame()
     {
+        GameManager.instance.SaveHighScores();
         Application.Quit();
     }
 

@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     public void CloseOptions() 
     {
+        GameManager.instance.SaveOptions();
         optionsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }

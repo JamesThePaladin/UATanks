@@ -208,7 +208,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6862080077724f64291c89e8ae53577c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6f5a99094a3f9e54a956036017703cb6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1112,6 +1112,7 @@ MonoBehaviour:
   fieldOfView: 180
   hearingDistance: 10
   lives: 3
+  deathSound: {fileID: 1030694080112766597}
 --- !u!1 &7550101356138675741
 GameObject:
   m_ObjectHideFlags: 0

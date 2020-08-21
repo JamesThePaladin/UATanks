@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.Animations;
 
-[RequireComponent(typeof(Pawn))]
+[RequireComponent(typeof(EnemyPawn))]
 [RequireComponent(typeof(TankMotor))]
 public class  AIController : Controller 
 {

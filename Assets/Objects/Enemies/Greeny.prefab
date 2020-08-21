@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 5203595024008075824}
   - component: {fileID: 5203595024008075826}
   - component: {fileID: 5203595024008075825}
-  - component: {fileID: 5203595024008075827}
+  - component: {fileID: 8891686903514373276}
   - component: {fileID: 2964374403321051448}
   - component: {fileID: 3354916977378610243}
   m_Layer: 0
@@ -898,8 +898,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 9218102352590268091}
-  pawn: {fileID: 5203595024008075827}
---- !u!114 &5203595024008075827
+  pawn: {fileID: 0}
+--- !u!114 &8891686903514373276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -908,7 +908,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7402208243620679946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6be440d8b1b89489f8dc61ab911436, type: 3}
+  m_Script: {fileID: 11500000, guid: a2777f27ab996e141baeafeab1b748ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
@@ -931,6 +931,7 @@ MonoBehaviour:
   viewRadius: 90
   fieldOfView: 45
   hearingDistance: 10
+  deathSound: {fileID: 1782336994013379574}
 --- !u!114 &2964374403321051448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 5203595024008075825}
-  pawn: {fileID: 5203595024008075827}
+  pawn: {fileID: 8891686903514373276}
   target: {fileID: 0}
   targetTf: {fileID: 0}
   playerLayer:

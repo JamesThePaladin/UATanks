@@ -8,6 +8,8 @@ public class PlayerPawn : Pawn
     //player lives
     [Header("Player Lives")]
     public int lives;
+    [Header("Death Sound")]
+    public AudioSource deathSound;
 
     protected override void Start()
     {

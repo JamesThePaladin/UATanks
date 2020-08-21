@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ShellScript : MonoBehaviour
 {
-    public GameObject instigator; //variable for the isntigator of the shot
+    //variable for the isntigator of the shot
+    public GameObject instigator; 
+    //for the sound our bullet makes when we hit our target
+    public AudioSource hitSound;
 
-    public float damage; //damage shell does, recieved from pawn
+    //damage shell does, recieved from pawn
+    [HideInInspector]
+    public float damage; 
 
     private void OnTriggerEnter(Collider other)
     {
-        //TODO: Add hit sounds here
+        hitSound.Play();
         //check if collider belongs to player or enemy
         if (other.CompareTag("Player") || (other.CompareTag("Enemy")))
         {

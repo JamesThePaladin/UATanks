@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 929624959073255632}
   - component: {fileID: 929624959073255634}
   - component: {fileID: 929624959073255633}
-  - component: {fileID: 929624959073255635}
   - component: {fileID: 2694133226437261470}
   - component: {fileID: 1013459266929607334}
+  - component: {fileID: -7645635217391222087}
   m_Layer: 0
   m_Name: Clyde
   m_TagString: Enemy
@@ -216,39 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 1991326888527775094}
-  pawn: {fileID: 929624959073255635}
---- !u!114 &929624959073255635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 213418698647450311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6be440d8b1b89489f8dc61ab911436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
-  shotTimerDelay: 2
-  shellTimeOut: 3
-  coolDownTimer: 0
-  health: 100
-  maxHealth: 100
-  moveSpeed: 10
-  turnSpeed: 180
-  shotForce: 1000
-  damage: 10
-  points: 100
-  score: 0
-  noise: 0
-  noiseRange: 10
-  isMakingNoise: 0
-  closeEnough: 1
-  viewRadius: 90
-  fieldOfView: 45
-  hearingDistance: 10
+  pawn: {fileID: 0}
 --- !u!114 &2694133226437261470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 929624959073255633}
-  pawn: {fileID: 929624959073255635}
+  pawn: {fileID: -7645635217391222087}
   target: {fileID: 0}
   targetTf: {fileID: 0}
   playerLayer:
@@ -291,6 +259,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.87, y: 1, z: 2.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7645635217391222087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213418698647450311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2777f27ab996e141baeafeab1b748ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shell: {fileID: 850349017066072422, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
+  shellRb: {fileID: 9206374942381552056, guid: 59ddfda80c53b914d9fc9a63f105223a, type: 3}
+  shotTimerDelay: 2
+  shellTimeOut: 3
+  coolDownTimer: 4
+  health: 125
+  maxHealth: 125
+  moveSpeed: 2
+  turnSpeed: 180
+  shotForce: 2000
+  damage: 15
+  points: 100
+  score: 0
+  noise: 0
+  noiseRange: 10
+  isMakingNoise: 0
+  closeEnough: 1
+  viewRadius: 10
+  fieldOfView: 180
+  hearingDistance: 10
+  deathSound: {fileID: 196603818745825137}
 --- !u!1 &436855023925130239
 GameObject:
   m_ObjectHideFlags: 0
