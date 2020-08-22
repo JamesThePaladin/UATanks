@@ -53,7 +53,7 @@ public class MainMenuScript : MonoBehaviour
     //for quit button on start menu, closes the app
     public void QuitGame()
     {
-        GameManager.instance.SaveHighScores();
+        //GameManager.instance.SaveHighScores();
         Application.Quit();
     }
 

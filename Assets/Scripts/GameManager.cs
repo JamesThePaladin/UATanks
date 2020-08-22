@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     public float sfxVolume;
     [HideInInspector]
     public float musicVolume; 
-    //TODO: sfx and music volume
+    //TODO: sfx and music volume DURING GAME PLAY
 
     // Start is called before the first frame update
     void Awake()
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadHighScores() 
     {
-        
+        //TODO: Finish Load Highscores function
     }
 
     /// <summary>

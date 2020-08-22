@@ -62,7 +62,7 @@ public class PauseMenu : MonoBehaviour
     {
         optionsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(false);
-        GameManager.instance.GameOver();
+        //GameManager.instance.GameOver();
         Application.Quit();
     }
 }

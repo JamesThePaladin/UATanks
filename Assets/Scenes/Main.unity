@@ -270,7 +270,7 @@ Camera:
   m_GameObject: {fileID: 591245212}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -359,13 +359,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4f0856cab28bddf45bf92e63a082e004, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.247
+  m_Volume: 0.306
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 215
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1327,7 +1327,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 157847752}
+      objectReference: {fileID: 157847757}
     - target: {fileID: 6266483189753194068, guid: 05fe04d8e25a5dd4fa96b0e75aba5a49,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1338,6 +1338,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6266483189953927250, guid: 05fe04d8e25a5dd4fa96b0e75aba5a49,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 157847757}
     - target: {fileID: 6266483190025887878, guid: 05fe04d8e25a5dd4fa96b0e75aba5a49,
         type: 3}
       propertyPath: m_Name
