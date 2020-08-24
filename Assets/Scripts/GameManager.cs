@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
                 isGameStart = false;
             }
         }
-
     }
     /// <summary>
     /// handles game over once all players have 0 lives

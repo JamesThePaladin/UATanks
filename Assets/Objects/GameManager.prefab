@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f84185e2cf7c74396e4fb5e7217cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameStart: 0
   isMapOfTheDay: 0
   isRandomMap: 1
   enemies:
@@ -63,6 +64,14 @@ MonoBehaviour:
   playerSpawners: []
   highScores: []
   isMultiplayer: 1
+  player1Score: 0
+  player1ScoreText: {fileID: 0}
+  player1Lives: 0
+  player1LivesText: {fileID: 0}
+  player2Score: 0
+  player2ScoreText: {fileID: 0}
+  player2Lives: 0
+  player2LivesText: {fileID: 0}
   pickupSpawners: []
   powerup: {fileID: 0}
   pickupPrefabs:
@@ -73,3 +82,12 @@ MonoBehaviour:
   spawnDelay: 10
   currentPowerUps: 0
   maxPowerUps: 0
+  music: {fileID: 0}
+  master: {fileID: 0}
+  sfx: []
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  masterVolume: 0
+  sfxVolume: 0
+  musicVolume: 0

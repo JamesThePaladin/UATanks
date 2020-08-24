@@ -21,6 +21,10 @@ TagManager:
   - MusicSlider
   - MasterSlider
   - sfxSlider
+  - Player1LivesText
+  - Player1ScoresText
+  - Player2LivesText
+  - Player2ScoresText
   layers:
   - Default
   - TransparentFX
